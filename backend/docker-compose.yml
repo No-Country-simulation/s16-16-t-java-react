@@ -1,0 +1,18 @@
+version: "3.8"
+
+services:
+  db:
+    container_name: db-container
+    image: mysql
+    ports:
+      - "3309:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root-password
+      MYSQL_DATABASE: 3Dstore
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    volumes:
+      - db-3d-store:/var/lib/mysql
+
+volumes:
+  db-3d-store:
