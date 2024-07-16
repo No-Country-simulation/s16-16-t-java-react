@@ -24,7 +24,7 @@ import lombok.NoArgsConstructor;
 @Table(name="Categorias")
 public class Categoria {
     @Id
-    @Column(name="idusuario", unique = true, nullable = false)
+    @Column(name="categoria_id", unique = true, nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;    
     @Column(nullable = false)
