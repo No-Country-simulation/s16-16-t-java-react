@@ -3,6 +3,10 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      fontFamily: {
+        'sans': ['ui-sans-serif', 'system-ui'],
+        'openSans': ["Open Sans", 'sans-serif'],
+      },
       colors: {
         'primary-light': '#e8f7fc',
         'primary-light-hover': '#dcf3fa',
@@ -13,7 +17,7 @@ export default {
         'primary-dark': '#1183a8',
         'primary-dark-hover': '#1183a8',
         'primary-dark-active': '#0a4f65',
-        'primary-darker': '#0a4f65',
+        'primary-darker': '#083d4e',
         'neutral-light': '#ffffff',
         'neutral-light-hover': '#fefefe',
         'neutral-light-active': '#fdfdfd',
