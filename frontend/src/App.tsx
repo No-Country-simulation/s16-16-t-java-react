@@ -1,13 +1,15 @@
 import './App.css'
-import Home from './pages/Home'
-function App() {
+import {Route, Switch } from "wouter";
+import Error404 from './pages/Error404';
+import Home from './pages/Home';
 
-
-  return (
-    <>
-      <Home/>
-    </>
-  )
-}
+const App = () => (
+  <>
+    <Switch>
+      <Route path='/' component={Home}/>
+      <Route><Error404/></Route>
+    </Switch>
+  </>
+)
 
 export default App
