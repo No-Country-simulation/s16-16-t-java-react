@@ -8,7 +8,7 @@ import logo6 from '../assets/polymaker_logo.png.png'
 
 const JobsSection = () => {
   return (
-    <section className='py-16 px-[6.438rem] w-full'>
+    <section className='py-16 px-[6.438rem] w-full max-w-7xl'>
       <div className='flex items-center'>
       <hr className='border-neutral-light w-full'/>
       <h3 className='shrink-0 px-1'>Calidad Garantizada en cada Trabajo</h3>

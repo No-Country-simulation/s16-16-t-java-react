@@ -19,7 +19,7 @@ const Carousel:FunctionComponent<CarouselProp> = ({slides}) => {
     console.log(current)
   }
   return (
-    <div className='overflow-hidden relative'>
+    <div className='overflow-hidden relative max-w-[1080px]'>
       <div className='flex transition erase-out duration-40'
       style={{
         transform: `translateX(-${current * 100}%)`,

@@ -2,7 +2,7 @@ import React from 'react';
 
 const GuidesSection = () => {
   return (
-    <section className='py-16'>
+    <section className='py-16 max-w-7xl'>
       <h2 className='text-2xl font-semibold leading-[1.8rem] text-start px-[6.5rem] pb-8'>Guías de Diseño 3D</h2>
       <div className='flex px-[12.188rem] gap-[12.875rem]'>
       <div className='flex flex-col gap-6'>
