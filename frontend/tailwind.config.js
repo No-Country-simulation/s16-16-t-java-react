@@ -27,7 +27,8 @@ export default {
         'neutral-dark': '#bcbcbc',
         'neutral-dark-hover': '#969696',
         'neutral-dark-active': '#707070',
-        'neutral-darker': '#393939'
+        'neutral-darker': '#393939',
+        'background': '#222631'
       }
     },
   },
