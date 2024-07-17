@@ -18,12 +18,12 @@ function SearchInput() {
 
   return (
     <>
-      <div className="rounded-lg border-2 border-cyan-600 w-[720px] flex items-center bg-neutral-normal-hover">
+      <div className="rounded-lg border-2 border-cyan-600 w-[720px] h-12 flex items-center bg-neutral-normal-hover">
         <input
           type="text"
           onChange={handleChange}
           value={search}
-          className="rounded-lg pl-6 w-full h-14 font-normal leading-snu text-lg bg-neutral-normal-hover placeholder:text-neutral-500 text-neutral-darker border-none outline-none"
+          className="rounded-lg pl-6 w-full h-12 font-normal leading-snu text-md bg-transparent placeholder:text-neutral-500 text-neutral-darker border-none outline-none"
           placeholder="¿Qué estás buscando?"
         />
         {cleanInput &&
