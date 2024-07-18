@@ -1,7 +1,8 @@
-import { FaTruckFast, FaRegCircleUser } from "react-icons/fa6";
-import { PiShoppingCartBold } from "react-icons/pi";
+import { FaTruckFast } from "react-icons/fa6";
 import SearchInput from "./SearchInput";
 import Navbar from "./Navbar";
+import Micuenta from '../assets/icono-mi-cuenta-skyblue.svg'
+import Carrito from '../assets/icono-mi-carrito-skyblue.svg'
 
 function Header() {
     return (
@@ -21,11 +22,11 @@ function Header() {
                         <section className="flex items-center gap-6">
                             <SearchInput />
                             <button className="flex flex-col items-center gap-2">
-                                <FaRegCircleUser className="text-primary-normal text-5xl" />
+                                <img src={Micuenta} className="h-12 object-cover"/>
                                 <p className="text-white text-sm font-normal leading-4">Mi Cuenta</p>
                             </button>
                             <button className="flex flex-col items-center gap-2 relative">
-                                <PiShoppingCartBold className="text-primary-normal text-5xl" />
+                                <img src={Carrito} className="h-12 object-cover"/>
                                 <p className="text-white text-sm font-normal leading-4">Mi Carrito</p>
                                 <span className="absolute rounded-full w-5 h-5 grid place-items-center right-0 top-[-5px] bg-primary-light-active text-primary-dark font-bold text-sm">
                                     0

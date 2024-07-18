@@ -1,5 +1,5 @@
 import { FunctionComponent } from 'react';
-import CartIcon from '../assets/icono-mi-carrito-navbar.svg'
+import CartIcon from '../assets/icono-mi-carrito-white.svg'
 import eyeIcon from '../assets/eyeIcon.svg'
 type CardProps = {
   image: string,
