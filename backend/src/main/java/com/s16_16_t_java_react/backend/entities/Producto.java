@@ -5,8 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Entity
 @Table(name = "Productos")
 @Data
@@ -14,7 +12,6 @@ import java.util.List;
 @AllArgsConstructor
 public class Producto {
     @Id
-    @Column(name="producto_id", unique = true, nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
@@ -22,7 +19,7 @@ public class Producto {
     private String descripcion;
     private Double precio;
     private int stock;
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name = "categoria_id")
     private Categoria categoria;
-    private List<String> imagesName;
 }
