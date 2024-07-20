@@ -10,7 +10,7 @@ function AllProducts() {
   return (
     <div className="flex flex-col min-h-screen bg-background">
       <Header />
-      <main className="flex-grow m-autos font-openSans">
+      <main className="flex-grow m-auto font-openSans">
         <article className="relative max-w-7xl m-auto flex justify-center gap-8 py-12">
           <div>
             <FilterCategories />
