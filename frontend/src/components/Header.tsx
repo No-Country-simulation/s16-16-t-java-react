@@ -3,6 +3,7 @@ import SearchInput from "./SearchInput";
 import Navbar from "./Navbar";
 import Micuenta from '../assets/icono-mi-cuenta-skyblue.svg'
 import Carrito from '../assets/icono-mi-carrito-skyblue.svg'
+import { Link } from "wouter";
 
 function Header() {
     return (
@@ -21,10 +22,10 @@ function Header() {
                     <article className="flex-col gap-9 flex">
                         <section className="flex items-center gap-6">
                             <SearchInput />
-                            <button className="flex flex-col items-center gap-2">
+                            <Link to={'/myAccount'} className="flex flex-col items-center gap-2">
                                 <img src={Micuenta} className="h-12 object-cover"/>
                                 <p className="text-white text-sm font-normal leading-4">Mi Cuenta</p>
-                            </button>
+                            </Link>
                             <button className="flex flex-col items-center gap-2 relative">
                                 <img src={Carrito} className="h-12 object-cover"/>
                                 <p className="text-white text-sm font-normal leading-4">Mi Carrito</p>
