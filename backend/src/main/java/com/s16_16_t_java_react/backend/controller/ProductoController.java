@@ -23,12 +23,18 @@ import java.util.Set;
 @RequestMapping("/productos")
 public class ProductoController {
 
-    @Autowired
+
     private IProductoService service;
-    @Autowired
+
     private IImagenService imagenService;
-    @Autowired
+
     private ICategoriaService categoriaService;
+
+    public ProductoController(IProductoService service, IImagenService imagenService, ICategoriaService categoriaService) {
+        this.service = service;
+        this.imagenService = imagenService;
+        this.categoriaService = categoriaService;
+    }
 
     @GetMapping
     public List<Producto> getAll() {

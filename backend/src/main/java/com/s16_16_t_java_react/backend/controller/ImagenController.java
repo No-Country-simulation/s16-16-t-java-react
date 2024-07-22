@@ -14,8 +14,12 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/imagenes")
 public class ImagenController {
-    @Autowired
+
     private IImagenService service;
+
+    public ImagenController(IImagenService service) {
+        this.service = service;
+    }
 
     @PostMapping
     public Imagen saveImagen(@RequestPart MultipartFile file) throws IOException {
