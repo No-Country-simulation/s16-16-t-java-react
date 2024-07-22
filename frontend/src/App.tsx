@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import AllProducts from './pages/AllProducts';
 import MyAccount from './pages/MyAccount';
 import Newcalculator from './pages/Newcalculator';
+import Help from './pages/Help';
 
 const App = () => (
   <>
@@ -13,6 +14,7 @@ const App = () => (
       <Route path='/allProducts' component={AllProducts}/>
       <Route path='/myAccount' component={MyAccount}/>
       <Route path='/calculator' component={Newcalculator}/>
+      <Route path='/ayuda' component={Help}/>
       <Route><Error404/></Route>
     </Switch>
   </>
