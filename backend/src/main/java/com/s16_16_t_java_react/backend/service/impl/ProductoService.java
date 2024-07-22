@@ -25,4 +25,9 @@ public class ProductoService implements IProductoService {
         return repository.findById(id);
     }
 
+    @Override
+    public Producto saveProducto(Producto producto) {
+        return repository.save(producto);
+    }
+
 }

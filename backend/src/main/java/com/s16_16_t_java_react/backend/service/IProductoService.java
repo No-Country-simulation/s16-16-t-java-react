@@ -9,4 +9,5 @@ public interface IProductoService {
     List<Producto> getAll();
 
     Optional<Producto> getProductoById(int id);
+    Producto saveProducto(Producto producto);
 }
