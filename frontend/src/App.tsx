@@ -6,6 +6,7 @@ import AllProducts from './pages/AllProducts';
 import MyAccount from './pages/MyAccount';
 import Newcalculator from './pages/Newcalculator';
 import Help from './pages/Help';
+import DesignGuide from './pages/DesignGuide';
 
 const App = () => (
   <>
@@ -13,6 +14,7 @@ const App = () => (
       <Route path='/' component={Home}/>
       <Route path='/allProducts' component={AllProducts}/>
       <Route path='/myAccount' component={MyAccount}/>
+      <Route path='/designGuide' component={DesignGuide}/>
       <Route path='/calculator' component={Newcalculator}/>
       <Route path='/ayuda' component={Help}/>
       <Route><Error404/></Route>
