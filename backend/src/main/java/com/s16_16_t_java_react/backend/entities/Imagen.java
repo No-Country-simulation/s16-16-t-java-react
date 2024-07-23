@@ -1,12 +1,7 @@
 package com.s16_16_t_java_react.backend.entities;
 
-
-
 import jakarta.persistence.*;
-
-
 import lombok.AllArgsConstructor;
-
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -14,12 +9,20 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name="Categorias")
-public class Categoria {
+@Table(name = "Imagenes")
+public class Imagen {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column(unique = true, nullable = false)
-    private String nombre;
-    
+
+    public Imagen(byte[] data, String type) {
+        this.data = data;
+        this.type = type;
+    }
+
+    @Column(columnDefinition="LONGBLOB NOT NULL")
+    private byte[] data;
+
+    private String type;
+
 }
