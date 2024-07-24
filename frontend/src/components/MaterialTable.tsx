@@ -1,7 +1,6 @@
-//import React from 'react'
-//import { FaCircle } from "react-icons/fa";
 
-export default function Materiales() {
+
+export default function MaterialTable() {
   return (
     <div className="my-16">
 {/* <div className="w-[1072px] h-17 pl-3.5 pr-5 py-1 bg-sky-900 rounded-tl-lg rounded-tr-lg justify-center items-center gap-10 inline-flex">
@@ -625,11 +624,5 @@ export default function Materiales() {
 
 
 </div>
-
-
-
-
-
-   
   )
 }
