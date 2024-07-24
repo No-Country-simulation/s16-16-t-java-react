@@ -1,6 +1,5 @@
 package com.s16_16_t_java_react.backend.entities;
 
-import jakarta.annotation.Nonnull;
 import jakarta.persistence.*;
 
 
@@ -34,5 +33,5 @@ public class Usuario {
     private String password;
 
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
-    private List<Pedidos> pedidos;
+    private List<Pedido> pedidos;
 }
