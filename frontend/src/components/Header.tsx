@@ -14,7 +14,7 @@ function Header() {
                     <FaTruckFast className="w-5 h-4" />
                 </div>
             </section>
-            <section className="pt-4 pb-6 bg-neutral-darker flex items-center gap-9">
+            <section className="pt-4 pb-6 bg-primary-darker flex items-center gap-9">
                 <section className="max-w-7xl flex items-center gap-9 m-auto">
                     <div className="">
                         <span className="block w-32 h-32 relative bg-neutral-400 rounded-lg"></span>
