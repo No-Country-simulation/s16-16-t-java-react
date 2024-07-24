@@ -1,6 +1,7 @@
 import { FunctionComponent } from 'react';
 import CartIcon from '../assets/icono-mi-carrito-white.svg'
 import eyeIcon from '../assets/eyeIcon.svg'
+import { Link } from 'wouter';
 type CardProps = {
   image: string,
   title: string,
@@ -9,7 +10,7 @@ type CardProps = {
 
 const ProductCard: FunctionComponent<CardProps> = ({ image, title, price }) => {
   return (
-    <div className='font-openSans w-[250px] bg-neutral-500/60 flex flex-col px-4 pb-4 items-start border-[1.2px] border-neutral-dark-hover rounded-lg'>
+    <Link to={'/detailProduct'} className='font-openSans w-[250px] bg-neutral-500/60 flex flex-col px-4 pb-4 items-start border-[1.2px] border-neutral-dark-hover rounded-lg'>
       <div className='w-[218px] h-[232px] border-b-[1.5px]'>
         <img src={image} className='w-full h-full object-cover' />
       </div>
@@ -24,7 +25,7 @@ const ProductCard: FunctionComponent<CardProps> = ({ image, title, price }) => {
         </button>
         <button className='flex flex-col justify-center items-center gap-10 rounded-[4px] border-2 border-primary-normal p-[5px] w-[45px] h-[38px] hover:border-primary-dark-active'><img src={eyeIcon} /></button>
       </div>
-    </div>
+    </Link>
   );
 }
 
