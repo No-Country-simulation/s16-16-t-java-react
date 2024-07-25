@@ -3,7 +3,7 @@ import image1 from '../assets/Rectangle415.png'
 import image2 from '../assets/Rectangle414.png'
 const InfoSection = () => {
   return (
-    <section className='w-full max-w-7xl px-[6.5rem] flex flex-col gap-16 bg-gradient-to-b from-background to-[#303030] pt-[34px] pb-[33px]'>
+    <section className='w-full m-auto max-w-7xl px-[6.5rem] flex flex-col gap-16 pt-[34px] pb-[33px]'>
     <div className='flex justify-between w-full'>
       <img src={image1}/>
       <div className='flex flex-col gap-6 items-center'>
