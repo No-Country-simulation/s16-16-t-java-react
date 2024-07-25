@@ -2,7 +2,7 @@ package com.s16_16_t_java_react.backend.controller;
 
 import com.s16_16_t_java_react.backend.entities.Imagen;
 import com.s16_16_t_java_react.backend.service.IImagenService;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
