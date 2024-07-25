@@ -6,7 +6,6 @@ services:
     plan: free
     dockerfilePath: ./backend/Dockerfile
     healthCheckPath: /
-    rootDir: ./backend
     envVars:
       - key: SPRING_DATASOURCE_CONNECTION_STRING
         fromDatabase:
