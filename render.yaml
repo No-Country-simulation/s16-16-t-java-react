@@ -4,7 +4,7 @@ services:
     runtime: docker
     region: oregon
     plan: free
-    dockerfilePath: /backend/Dockerfile
+    dockerfilePath: ./backend/Dockerfile
     healthCheckPath: /
     envVars:
       - key: SPRING_DATASOURCE_CONNECTION_STRING
