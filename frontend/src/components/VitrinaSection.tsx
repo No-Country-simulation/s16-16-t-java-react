@@ -5,7 +5,7 @@ import image3 from '../assets/Rectangle-419.png'
 
 const VitrinaSection = () => {
   return (
-    <section className='bg-primary-darker py-[1.688rem] px-[6.5rem]'>
+    <section className='m-auto max-w-7xl py-[1.688rem] px-[6.5rem]'>
       <h2 className='text-start pb-8 text-2xl font-semibold leading-[1.8rem]'>Nuestra Vitrina</h2>
       <div className='flex gap-6'>
       <div className='flex flex-col'>

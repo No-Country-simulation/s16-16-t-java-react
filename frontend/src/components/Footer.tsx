@@ -1,9 +1,13 @@
+import logo from '../assets/Asset 1 1.png';
+
 function Footer() {
   return (
     <footer className="font-openSans flex flex-col bg-primary-darker h-30 w-full">
       <div className="max-w-7xl w-[1072px] m-auto px-4 justify-between flex py-16">
         <section className="flex flex-col gap-4">
-          <span className="w-16 h-16 bg-zinc-300"></span>
+          <div className="w-16 h-16">
+            <img src={logo} className="w-full h-full object-cover rounded-lg" />
+          </div>
           <p className="text-base text-left w-80 text-neutral-50">
             Ofrecemos una amplia gama de productos personalizados, materiales de alta calidad y servicios a medida para empresas y particulares. Innovación y creatividad en cada impresión.
           </p>
