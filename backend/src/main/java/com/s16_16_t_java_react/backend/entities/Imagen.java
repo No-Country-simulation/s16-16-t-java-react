@@ -20,7 +20,6 @@ public class Imagen {
         this.type = type;
     }
 
-    @Column(columnDefinition="LONGBLOB NOT NULL")
     private byte[] data;
 
     private String type;
