@@ -6,7 +6,7 @@ function Footer() {
       <div className="max-w-7xl w-[1072px] m-auto px-4 justify-between flex py-16">
         <section className="flex flex-col gap-4">
           <div className="w-16 h-16">
-            <img src={logo} className="w-full h-full object-cover rounded-lg" />
+            <a href='/'><img src={logo} className="w-full h-full object-cover rounded-lg" /></a>
           </div>
           <p className="text-base text-left w-80 text-neutral-50">
             Ofrecemos una amplia gama de productos personalizados, materiales de alta calidad y servicios a medida para empresas y particulares. Innovación y creatividad en cada impresión.

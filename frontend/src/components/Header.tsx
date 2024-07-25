@@ -18,7 +18,7 @@ function Header() {
             <section className="pt-4 pb-6 bg-primary-darker flex items-center gap-9">
                 <section className="max-w-7xl flex items-center gap-9 m-auto">
                     <div className="w-32 h-32 relative bg-neutral-400 rounded-lg">
-                        <img src={logo} className="w-full h-full object-cover rounded-lg" />
+                        <Link to={'/'}><img src={logo} className="w-full h-full object-cover rounded-lg" /></Link>
                     </div>
                     <article className="flex-col gap-9 flex">
                         <section className="flex items-center gap-6">
