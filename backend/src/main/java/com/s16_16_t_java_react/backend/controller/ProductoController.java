@@ -1,7 +1,7 @@
 package com.s16_16_t_java_react.backend.controller;
 
 import com.s16_16_t_java_react.backend.dto.CategoriaDto;
-import com.s16_16_t_java_react.backend.dto.ProductoDTO;
+import com.s16_16_t_java_react.backend.dto.ProductoDto;
 import com.s16_16_t_java_react.backend.entities.Categoria;
 import com.s16_16_t_java_react.backend.entities.Imagen;
 import com.s16_16_t_java_react.backend.entities.Producto;
@@ -51,7 +51,7 @@ public class ProductoController {
     }
 
     @PostMapping
-    public ResponseEntity<?> saveProducto(@RequestPart ProductoDTO producto,
+    public ResponseEntity<?> saveProducto(@RequestPart ProductoDto producto,
                                  @RequestPart MultipartFile file) throws IOException {
 
 

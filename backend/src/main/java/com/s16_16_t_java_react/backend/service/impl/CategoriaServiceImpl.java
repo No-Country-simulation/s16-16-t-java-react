@@ -37,30 +37,30 @@ public class CategoriaServiceImpl implements CategoriaService {
     }
 
     @Override
-    public CategoriaDto findById(Integer idCategoria) {
+    public CategoriaDto findById(Integer id) {
 
-        Categoria categoria = categoriaRepository.findById(idCategoria).orElseThrow();
+        Categoria categoria = categoriaRepository.findById(id).orElseThrow();
 
         return categoriaMapper.toCategoriaDto(categoria);
         
     }
 
     @Override
-    public CategoriaDto update(Integer idCategoria, CategoriaDto categoriaDto) {
+    public CategoriaDto update(Integer id, CategoriaDto categoriaDto) {
         
-        Categoria categoria = categoriaRepository.findById(idCategoria).orElseThrow();
+        Categoria categoria = categoriaRepository.findById(id).orElseThrow();
         categoriaMapper.updateCategoria(categoria, categoriaDto);        
         return categoriaMapper.toCategoriaDto(categoriaRepository.save(categoria));
         
     }
 
     @Override
-    public CategoriaDto delete(Integer idCategoria) {
-        Categoria categoria = categoriaRepository.findById(idCategoria).orElseThrow();
+    public CategoriaDto delete(Integer id) {
+        Categoria categoria = categoriaRepository.findById(id).orElseThrow();
         
         CategoriaDto categoriaDto = categoriaMapper.toCategoriaDto(categoria);
 
-        categoriaRepository.deleteById(idCategoria);
+        categoriaRepository.deleteById(id);
 
         return categoriaDto;
     }
