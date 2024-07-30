@@ -8,15 +8,17 @@ import tiendaIcon from "../assets/cart/TiendaIcono.png"
 import carritoIcon from "../assets/icono-mi-carrito-white.svg"
 import { Link } from "wouter"
 import Counter from "./Counter"
+import useStore from "../zustand/store"
+
 const Cart = ({open, onClose }) => {
-  const [amount, setAmount] = useState(1)
   const [check, setCheck] = useState(false)
   const [envio, setEnvio] = useState(false)
   const [direccion, setDireccion] = useState('')
   const [checkEnvio, setCheckEnvio] = useState(true)
-  const [cart, setCart] = useState([])
+  const {cart, removeFromCart } = useStore()
 
-  const totalPrice = cart.reduce((total, item) => total + item.precio * amount, 0)
+  
+  const totalPrice = cart.reduce((total, item) => total + item.precio * item.quantity, 0)
   const cartRef = useRef(null)
 
   const handleClose = (e: MouseEvent<HTMLButtonElement>) =>{
@@ -24,10 +26,8 @@ const Cart = ({open, onClose }) => {
       onClose()
     }
   }
-  const handleRemoveItem = (id) => {
-    setCart(cart.filter(item => item.id !== id));
-  }
-
+  console.log(cart);
+  
   const handleInputChange = (e) => {
     setDireccion(e.target.value)
   }
@@ -58,21 +58,32 @@ const Cart = ({open, onClose }) => {
             <div className="flex flex-col" key={index}>
               <div className="flex flex-col gap-4 p-4 pb-8">
                 <div className="flex gap-6 w-full items-center">
-                  <img className="py-[19px]" src={imagenPrueba}/>
+                  <img className="py-[19px] h-[93.6px] w-[120.83px] object-cover" src={p.imageUrl}/>
                   <div className="w-full flex flex-col gap-6">
                     <div className="flex justify-between gap-12">
                       <p className="font-semibold">{p.nombre}</p>
-                      <button onClick={()=> handleRemoveItem(p.id)}><img src={trashIcon}/></button>
+                      <button onClick={()=> removeFromCart(p.id)}><img src={trashIcon}/></button>
                     </div>
                     <div className="flex gap-12 justify-between items-center">
-                      <Counter counter={amount} setCounter={setAmount}/>
+                      <Counter counter={p.quantity}
+                              setCounter={(newQuantity) => {
+                              if (newQuantity === 0) {
+                                removeFromCart(p.id);
+                              } else {
+                                useStore.setState((state) => ({
+                                  cart: state.cart.map((item) =>
+                                    item.id === p.id ? { ...item, quantity: newQuantity } : item
+                                  )
+                                }));
+                              }
+                            }}/>
                       <p className="text-lg">${p.precio}</p>
                     </div>
                   </div>
                 </div>
                 <div className="flex justify-between">
                   <p className="text-lg font-semibold">Subtotal (sin envío)</p>
-                  <p className="text-lg font-semibold">${p.precio * amount}</p>
+                  <p className="text-lg font-semibold">${p.precio * p.quantity}</p>
                 </div>
               </div>
             </div>
