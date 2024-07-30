@@ -1,0 +1,34 @@
+[
+  {
+    "id": 1,
+    "nombre": "Mates"
+  },
+  {
+    "id": 2,
+    "nombre": "Accesorio"
+  },
+  {
+    "id": 3,
+    "nombre": "Industrial"
+  },
+  {
+    "id": 4,
+    "nombre": "Decoración"
+  },
+  {
+    "id": 5,
+    "nombre": "Figuras 3D"
+  },
+  {
+    "id": 6,
+    "nombre": "Insumos"
+  },
+  {
+    "id": 7,
+    "nombre": "Oficina"
+  },
+  {
+    "id": 8,
+    "nombre": "Personalizado"
+  }
+]

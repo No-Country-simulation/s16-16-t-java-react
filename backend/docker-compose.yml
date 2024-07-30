@@ -1,18 +1,19 @@
 version: "3.8"
 
 services:
-  db:
-    container_name: db-container
-    image: mysql
+  postgres:
+    image: postgres:15
     ports:
-      - "3309:3306"
+      - "5432:5432"
     environment:
-      MYSQL_ROOT_PASSWORD: root-password
-      MYSQL_DATABASE: 3Dstore
-      MYSQL_USER: user
-      MYSQL_PASSWORD: password
-    volumes:
-      - db-3d-store:/var/lib/mysql
+      POSTGRES_DB: postgres
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: pass
 
-volumes:
-  db-3d-store:
+  pgadmin:
+    image: dpage/pgadmin4
+    ports:
+      - "5050:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: 6G9oH@example.com
+      PGADMIN_DEFAULT_PASSWORD: password

@@ -3,6 +3,7 @@ import SearchInput from "./SearchInput";
 import Navbar from "./Navbar";
 import Micuenta from '../assets/icono-mi-cuenta-skyblue.svg'
 import Carrito from '../assets/icono-mi-carrito-skyblue.svg'
+import logo from '../assets/Asset 1 1.png';
 import { Link } from "wouter";
 import Cart from "./Cart";
 import { useState } from "react";
@@ -25,8 +26,8 @@ function Header() {
             </section>
             <section className="pt-4 pb-6 bg-primary-darker flex items-center gap-9">
                 <section className="max-w-7xl flex items-center gap-9 m-auto">
-                    <div className="">
-                        <span className="block w-32 h-32 relative bg-neutral-400 rounded-lg"></span>
+                    <div className="w-32 h-32 relative bg-neutral-400 rounded-lg">
+                        <Link to={'/'}><img src={logo} className="w-full h-full object-cover rounded-lg" /></Link>
                     </div>
                     <article className="flex-col gap-9 flex">
                         <section className="flex items-center gap-6">

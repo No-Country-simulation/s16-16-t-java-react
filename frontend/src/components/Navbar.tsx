@@ -24,9 +24,9 @@ function Navbar() {
         <Link to={'/designGuide'} className="cursor-pointer hover:text-primary-normal px-6 border-r-2 border-primary-normal">GUÍA DE DISEÑO</Link>
         <Link to={'/ayuda'} className="cursor-pointer hover:text-primary-normal px-6">AYUDA</Link>
       </ul>
-      <button className="transition hover:bg-primary-normal bg-sky-500 rounded-lg px-5 py-3 text-neutral-50">
+      <Link to={'/calculator'} className="transition hover:bg-primary-dark-hover bg-primary-normal rounded-lg px-5 py-3 text-neutral-50">
         CALCULAR PRECIO
-      </button>
+      </Link>
     </nav>
   )
 }
