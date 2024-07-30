@@ -27,7 +27,7 @@ public class Producto {
     private int categoria_id;
     
     @ManyToOne
-    @JoinColumn(name = "categoria_id")
+    @JoinColumn(name = "categoria_id", insertable=false, updatable=false)
     private Categoria categoria;
     @OneToMany
     private Set<Imagen> imagenes;

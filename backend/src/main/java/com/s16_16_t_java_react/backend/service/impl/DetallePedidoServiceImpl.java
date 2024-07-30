@@ -16,14 +16,14 @@ import com.s16_16_t_java_react.backend.repository.PedidoRepository;
 import com.s16_16_t_java_react.backend.service.DetallePedidoService;
 
 @Service
-public class DetallePedidoImpl implements DetallePedidoService{
+public class DetallePedidoServiceImpl implements DetallePedidoService{
 
     private final DetallePedidoMapper detallePedidoMapper;
     private final DetallePedidoRepository detallePedidoRepository;    
     private final PedidoRepository pedidoRepository;
 
     
-    public DetallePedidoImpl(PedidoRepository pedidoRepository, DetallePedidoMapper detallePedidoMapper, DetallePedidoRepository detallePedidoRepository) {
+    public DetallePedidoServiceImpl(PedidoRepository pedidoRepository, DetallePedidoMapper detallePedidoMapper, DetallePedidoRepository detallePedidoRepository) {
         this.detallePedidoMapper = detallePedidoMapper;
         this.detallePedidoRepository = detallePedidoRepository;        
         this.pedidoRepository = pedidoRepository;

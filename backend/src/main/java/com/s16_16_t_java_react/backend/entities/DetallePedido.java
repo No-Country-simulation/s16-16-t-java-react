@@ -21,18 +21,18 @@ public class DetallePedido implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;   
-    @Column(name = "producto_id")
+@Column(name = "producto_id")
     private int producto_id;
-    @Column(name = "pedido_id")
+@Column(name = "pedido_id")
     private int pedido_id;
     private int cantidad;
     private BigDecimal precio;
 
     @ManyToOne
-    @JoinColumn(name = "pedido_id")
+    @JoinColumn(name = "pedido_id",insertable=false, updatable=false)
     private Pedido pedido;
 
     @ManyToOne
-    @JoinColumn(name = "producto_id")
+    @JoinColumn(name = "producto_id",insertable=false, updatable=false)
     private Producto producto;
 }

@@ -10,7 +10,7 @@ import com.s16_16_t_java_react.backend.dto.ProductoDto;
 
 import com.s16_16_t_java_react.backend.entities.Producto;
 
-@Mapper (componentModel = "spring")
+@Mapper(componentModel = "spring")
 public interface ProductoMapper {
     Producto toProducto (ProductoDto productoDto);
 

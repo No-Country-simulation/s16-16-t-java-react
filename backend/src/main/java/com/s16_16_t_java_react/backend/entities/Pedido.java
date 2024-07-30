@@ -28,7 +28,7 @@ public class Pedido {
     private BigDecimal total;
 
     @ManyToOne
-    @JoinColumn(name = "usuario_id", nullable = false)
+    @JoinColumn(name = "usuario_id", insertable=false, updatable=false)
     private Usuario usuario;
 
     /*@OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
