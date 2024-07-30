@@ -23,8 +23,8 @@ import lombok.NoArgsConstructor;
 @Table(name="Usuarios")
 public class Usuario {
     @Id
-    @Column(name="idusuario", unique = true, nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="usuario_id")
     private int id;
     @Column(nullable = false)
     @Nonnull
@@ -34,5 +34,5 @@ public class Usuario {
     private String telefono;
     @Column(nullable = false)
     @Nonnull
-    private String password;    //Hay que cambiar la variable "contraseña" de la BD.
+    private String password;    
 }

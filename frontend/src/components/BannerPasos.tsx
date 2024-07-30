@@ -1,35 +1,26 @@
 
 
 export const BannerPasos = () => {
-    return (
-<div className="container mx-auto flex justify-center" >
+  return (
+    <div className="container max-w-7xl m-auto flex justify-center" >
 
-      <div className="relative w-[1281px] h-[280px] bg-primariodarker border-solid border-primarionormal bg-cyan-950 border-2 border-neutral-400">
+      <div className="relative w-[1281px] h-[280px] bg-primariodarker border-solid border-primarionormal">
         <div className="absolute w-[1073px] h-[175px] top-[71px] left-[103px]">
+
+          
           <div className="absolute w-[129px] h-[153px] top-[3px] left-0">
             <div className="absolute w-[127px] h-[113px] top-0 left-0">
-              <div className="absolute w-[127px] h-[113px] top-0 left-0">
-                <div className="absolute w-[67px] h-[23px] top-[93px] left-[30px]">
-                
-                </div>
-              </div>
-              {/* <FontistoCloudUp className="!absolute !w-[72px] !h-[63px] !top-[21px] !left-[26px]" /> */}
-              <img className="mx-auto"  src="/src/assets/img/vector screen-banner-pasos.svg" alt="Texto alternativo de la imagen" />
+              <img className="mx-auto" src="/src/assets/img/vector screen-banner-pasos.svg" alt="Texto alternativo de la imagen" />
             </div>
             <div className="absolute top-[134px] left-0 [font-family:'Open_Sans',Helvetica] font-semibold text-white text-sm tracking-[0] leading-[normal]">
               Sube tu archivo 3D
             </div>
           </div>
-          <img
-            className="absolute w-10 h-[60px] top-9 left-[155px]"
-            alt="Iconamoon arrow up"
-            src="/src/assets/img/iconamoon_arrow-up-2-bold.svg"
-          />
+
           <div className="absolute w-[138px] h-[175px] top-0 left-[223px]">
             <div className="absolute w-[127px] h-[113px] top-0 left-0">
               <div className="absolute w-[127px] h-[113px] top-0 left-0">
-              <img className="mx-auto"  src="/src/assets/img/vector screen-banner-pasos.svg" alt="Texto alternativo de la imagen" />
-             
+                <img className="mx-auto" src="/src/assets/img/vector screen-banner-pasos.svg" alt="Texto alternativo de la imagen" />
               </div>
               <img
                 className="absolute w-[63px] h-[63px] top-[9px] left-[30px]"
@@ -46,15 +37,15 @@ export const BannerPasos = () => {
           <img
             className="left-[387px] absolute w-10 h-[60px] top-9"
             alt="Iconamoon arrow up"
-           src="/src/assets/img/iconamoon_arrow-up-2-bold.svg"
+            src="/src/assets/img/iconamoon_arrow-up-2-bold.svg"
           />
           <div className="absolute w-[136px] h-[175px] top-0 left-[455px]">
             <div className="absolute w-[127px] h-[113px] top-0 left-[5px]">
-            <img className="mx-auto"  src="/src/assets/img/vector screen-banner-pasos.svg" alt="Texto alternativo de la imagen" />
+              <img className="mx-auto" src="/src/assets/img/vector screen-banner-pasos.svg" alt="Texto alternativo de la imagen" />
               <img
                 className="absolute w-16 h-16 top-[9px] left-8"
                 alt="Solar tag price"
-                 src="/src/assets/img/solar_tag-price-linear.svg"
+                src="/src/assets/img/solar_tag-price-linear.svg"
               />
             </div>
             <div className="absolute top-[137px] left-0 [font-family:'Open_Sans',Helvetica] font-semibold text-white text-sm text-center tracking-[0] leading-[normal]">
@@ -66,14 +57,14 @@ export const BannerPasos = () => {
           <img
             className="left-[617px] absolute w-10 h-[60px] top-9"
             alt="Iconamoon arrow up"
-             src="/src/assets/img/iconamoon_arrow-up-2-bold.svg"
+            src="/src/assets/img/iconamoon_arrow-up-2-bold.svg"
           />
           <div className="absolute w-[145px] h-[175px] top-0 left-[685px]">
             {/* <ThreeDPrintBannerPasos className="!absolute !w-[133px] !h-[123px] !top-0 !left-1" /> */}
-            
-      <img className="mx-auto"  src="/src/assets/img/Clip path group.svg" alt="Texto alternativo de la imagen" />
-  
-           
+
+            <img className="mx-auto" src="/src/assets/img/Clip path group.svg" alt="Texto alternativo de la imagen" />
+
+
             <div className="absolute top-[137px] left-0 [font-family:'Open_Sans',Helvetica] font-semibold text-white text-sm text-center tracking-[0] leading-[normal]">
               Déjanos encargarnos
               <br />
@@ -87,7 +78,7 @@ export const BannerPasos = () => {
           />
           <div className="absolute w-[149px] h-[175px] top-0 left-[924px]">
             {/* <ThreeDCheckBannerPasos className="!absolute !w-[130px] !h-[131px] !top-0 !left-2" /> */}
-            <img className="mx-auto"  src="/src/assets/img/Group.svg" alt="Texto alternativo de la imagen" />
+            <img className="mx-auto" src="/src/assets/img/Group.svg" alt="Texto alternativo de la imagen" />
             <p className="absolute top-[137px] left-0 [font-family:'Open_Sans',Helvetica] font-semibold text-white text-sm text-center tracking-[0] leading-[normal]">
               Recibe el producto en
               <br />
@@ -99,7 +90,7 @@ export const BannerPasos = () => {
           Tu impresión 3D en sólo 5 pasos
         </p>
       </div>
-      </div>
-    );
-  };
-  export default BannerPasos
+    </div>
+  );
+};
+export default BannerPasos
