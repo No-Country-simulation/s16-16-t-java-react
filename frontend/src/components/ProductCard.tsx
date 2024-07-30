@@ -11,10 +11,10 @@ type CardProps = {
 const ProductCard: FunctionComponent<CardProps> = ({ image, title, price }) => {
   return (
     <Link to={'/detailProduct'} className='font-openSans w-[250px] bg-neutral-500/60 flex flex-col px-4 pb-4 items-start border-[1.2px] border-neutral-dark-hover rounded-lg'>
-      <div className='w-[218px] h-[232px] border-b-[1.5px]'>
+      <div className='w-[218px] h-[232px] border-b-[1.5px] p-5'>
         <img src={image} className='w-full h-full object-cover' />
       </div>
-      <div className='flex flex-col items-start gap-4 w-full py-4 px-2'>
+      <div className='flex flex-col items-start gap-4 w-full py-3 px-1 h-28'>
         <h1 className='text-base font-semibold leading-tight text-start w-full'>{title}</h1>
         <p className='text-xl font-normal leading-normal text-start w-full'>{price}</p>
       </div>

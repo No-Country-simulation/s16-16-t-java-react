@@ -15,3 +15,8 @@ export interface PropProduct {
   }[];
   imageUrl?: string;
 }
+
+export interface propCategories {
+  id: number;
+  nombre: string;
+}
