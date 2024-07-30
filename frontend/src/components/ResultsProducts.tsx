@@ -1,5 +1,6 @@
 import ProductCard from './ProductCard'
 // import apiJSON from '../zustand/productos.json';
+import BillEmpty from '../assets/Bill_empty.png';
 import { PropProduct } from '../zustand/interfaces';
 import { useEffect, useState } from 'react';
 import { transformProducts } from '../helpers/transformProducts';
@@ -80,7 +81,10 @@ const ResultsProducts: React.FC<ProductsProps> = ({ selectCategories, countProdu
               />
             ))
           ) : (
-            <div>No hay productos disponibles</div>
+            <section className='flex flex-col items-center gap-7 w-[50rem]'>
+              <img src={BillEmpty}  className='h-52 w-52'/>
+              <h1 className='w-[50rem] px-32 text-2xl'>No se encontraron resultados que coincidan con los filtros</h1>
+            </section>
           )}
         </article>
       )}
