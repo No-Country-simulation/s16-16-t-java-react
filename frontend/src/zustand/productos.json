@@ -1,0 +1,39 @@
+[
+  {
+    "id": 1,
+    "nombre": "Mate Messi",
+    "descripcion": "Rico mate de messi hecho en 3d donde tu lo prefieres y demas rico mate delicioso.",
+    "precio": 4900,
+    "stock": 34,
+    "categoria": {
+      "id": 1,
+      "nombre": "Mates"
+    },
+    "imagenes": [
+      {
+        "id": 1,
+        "data": "/public/mate-messi-10.png",
+        "type": "image/jpeg"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "nombre": "Polvos3D",
+    "descripcion": "Rico mate de messi hecho en 3d donde tu lo prefieres y demas rico mate delicioso.",
+    "precio": 4900,
+    "stock": 34,
+    "categoria": {
+      "id": 6,
+      "nombre": "Insumos"
+    },
+    "imagenes": [
+      {
+        "id": 1,
+        "data": "/public/Polvos3D.png",
+        "type": "image/jpeg"
+      }
+    ]
+  }
+  
+]

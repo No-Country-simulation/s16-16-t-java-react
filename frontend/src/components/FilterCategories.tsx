@@ -1,50 +1,45 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { RiArrowRightSLine } from "react-icons/ri";
 import CalculoPrices from "./CalculoPrices";
-// import { useLocation } from 'wouter';
-// import useStore from "../zustand/store";
+// import categoriasJSON from '../zustand/categorias.json';
+import { propCategories } from "../zustand/interfaces";
 
+type categoryProps = {
+  setNameCategory: (nameCategory: string) => void
+  selectCategories: string[]
+}
 
-function FilterCategories() {
-  // const [, setLocation] = useLocation();
-  // USANDO EL STORE FLOBAL PARA ALMACENAR LA INFORMACION Y VIAJAR A OTRA RUTA
-  // const { setState } = useStore();
-
-  // const goToPageWithState = () => {
-  //   setState('Soy un valor pasado');
-  //   setLocation('/myAccount');
-  // };
-
-  // const goToPageWithState2 = () => {
-  //   setState('Soy un valor pasado de ota funcion');
-  //   setLocation('/myAccount');
-  // };
-
+const FilterCategories: React.FC<categoryProps> = ({ setNameCategory, selectCategories }) => {
+  const [categories, setCategories] = useState<propCategories[]>([]);
   const [openCategories, setOpenCategories] = useState<boolean>(false);
-  const [openStates, setOpenStates] = useState<{ [key: string]: boolean }>({
-    Productos_3D: false,
-    Insumos: false,
-  });
 
-  const categorias = [
-    {
-      headerCategory: 'Productos_3D',
-      categories: ['Accesorios', 'Decoración', 'Figuras de Acción', 'Industrial', 'Mates', 'Oficina', 'Productos Personalizados']
-    },
-    {
-      headerCategory: 'Insumos',
-      categories: ['Accesorios de Impresión', 'Almacenamiento y Cuidado', 'Filamentos', 'Polvos', 'Resinas']
-    },
-  ];
+  useEffect(() => {
+    const getCategories = async () => {
+      try {
+        const response = await fetch('https://spring-postgres-ds9s.onrender.com/api/categoria');
+        if (!response.ok) {
+          throw new Error('Error al obtener las categorias');
+        }
+        const data: propCategories[] = await response.json();
+        setCategories(data);
 
-  const handleToogle = (catego: string) => {
-    setOpenStates(prev => ({ ...prev, [catego]: !prev[catego] }));
-  };
+      } catch (e) {
+        console.error('Imposible solicitar categorias:', e);
+      }
+    }
+    getCategories();
+  },)
+
+  const handleCategories = (categorie: string) => {
+    if (!(selectCategories.includes(categorie))) {
+      setNameCategory(categorie);
+    }
+  }
+
+  const test = categories;
 
   return (
     <section className="w-[250px] sticky top-10 mt-16">
-      {/* <button onClick={goToPageWithState}>Ir a página</button><br/>
-      <button onClick={goToPageWithState2}>Ir a página2</button> */}
       <h1 className="text-start text-white text-2xl font-semibold leading-[28.80px]">
         Filtrar Por
       </h1>
@@ -54,33 +49,22 @@ function FilterCategories() {
             onClick={() => setOpenCategories(!openCategories)}
             className="cursor-pointer w-full h-10 p-2 justify-between items-center flex">
             <h2>Categorías</h2>
-            <section className={`transition-transform duration-[205ms] ${openCategories ? 'rotate-90' : 'rotate-0'}`}>
+            <section className={`transition-transform duration-[300ms] ${openCategories ? 'rotate-90' : 'rotate-0'}`}>
               <RiArrowRightSLine className="w-6 h-6" />
             </section>
           </div>
-          <div className={`transition-height duration-[205ms] ${openCategories ? 'max-h-[1000px]' : 'max-h-0 overflow-hidden'}`}>
-            {categorias.map((ct, i) => (
-              <section key={i}>
-                <div
-                  onClick={() => handleToogle(ct.headerCategory)}
-                  className={`cursor-pointer pl-2 hover:bg-primary-darker transition w-full h-10 p-2 justify-between items-center flex
-                    ${ct.headerCategory === 'Insumos' ? (openStates[ct.headerCategory] ? 'rounded-br-none rounded-bl-none' : 'rounded-bl-xl rounded-br-xl hover:rounded-bl-xl hover:rounded-br-xl') : ''}
-                  `}
-                >
-                  <h2 className="text-sm">{ct.headerCategory}</h2>
-                  <section className={`transition-transform duration-[205ms] ${openStates[ct.headerCategory] ? 'rotate-90' : 'rotate-0'}`}>
-                    <RiArrowRightSLine className="w-6 h-6" />
-                  </section>
-                </div>
-
-                <div className={`transition-height duration-[205ms]  ${openStates[ct.headerCategory] ? 'max-h-[1000px]' : 'max-h-0 overflow-hidden'}`}>
-                  {ct.categories.map((item, idx) => (
-                    <p key={idx} className={`cursor-pointer text-sm pl-4 py-3 w-full text-start font-thin hover:bg-primary-darker transition duration-[205ms]
-                      ${item === 'Resinas' ? 'rounded-br-xl transition hover:rounded-bl-xl hover:rounded-br-xl ' : 'rounded-br-none rounded-bl-none'}
-                    `}>
-                      {item}
-                    </p>
-                  ))}
+          <div className={`transition-height duration-[300ms] ${openCategories ? 'max-h-[1000px]' : 'max-h-0 overflow-hidden'}`}>
+            {test?.map((categoria) => (
+              <section key={categoria.id}>
+                <div className="transition-height">
+                  <p
+                    onClick={() => handleCategories(categoria.nombre)}
+                    className={`text-sm pl-4 py-3 w-full text-start font-thin hover:bg-primary-darker transition 
+                    ${selectCategories.includes(categoria.nombre) ? 'bg-primary-darker text-gray-300 select-none cursor-default' : 'cursor-pointer'}
+                    ${categoria.nombre === 'Personalizado' ? 'rounded-br-xl transition hover:rounded-bl-xl hover:rounded-br-xl ' : 'rounded-br-none rounded-bl-none'}
+                  `}>
+                    {categoria.nombre}
+                  </p>
                 </div>
               </section>
             ))}
