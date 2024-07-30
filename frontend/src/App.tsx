@@ -7,6 +7,13 @@ import MyAccount from './pages/MyAccount';
 import Newcalculator from './pages/Newcalculator';
 import Help from './pages/Help';
 import DesignGuide from './pages/DesignGuide';
+import Login from './pages/Login';
+import Shipment from './pages/Shipment';
+import Payment from './pages/Payment';
+import Resumen from './pages/Resumen';
+import ResumenVarios from './pages/ResumenVarios';
+
+
 
 const App = () => (
   <>
@@ -16,6 +23,11 @@ const App = () => (
       <Route path='/myAccount' component={MyAccount}/>
       <Route path='/designGuide' component={DesignGuide}/>
       <Route path='/calculator' component={Newcalculator}/>
+      <Route path='/login' component={Login}/>
+      <Route path='/shipment' component={Shipment}/>
+      <Route path='/payment' component={Payment}/>
+      <Route path='/resumen' component={Resumen}/>
+      <Route path='/resumenvarios' component={ResumenVarios}/>
       <Route path='/ayuda' component={Help}/>
       <Route><Error404/></Route>
     </Switch>

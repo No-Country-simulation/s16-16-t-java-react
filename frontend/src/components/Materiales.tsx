@@ -18,14 +18,12 @@ export default function Materiales() {
         Tabla comparativa de materiales 3D
       </div>
 
-<div >
-<img className="mx-auto"  src="/src/assets/img/Header.png" alt="Texto alternativo de la imagen" />
-</div>
+
 
 <div >
 
 <div >
-<img className="mx-auto"  src="/src/assets/img/Frame 888.png" alt="Texto alternativo de la imagen" />
+<img className="mx-auto"  src="/src/assets/img/tabla 97.png" alt="Texto alternativo de la imagen" />
 </div> 
 
 

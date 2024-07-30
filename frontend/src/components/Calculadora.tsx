@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import DropdownAccordion from './DropdownAccordion';
 
 export default function Calculadora() {
   const [fileName, setFileName] = useState<string>('');
@@ -74,18 +75,10 @@ export default function Calculadora() {
     <div className="w-[253px] h-[29px] text-neutral-50 text-2xl font-semibold font-['Open Sans'] -ml-10">Material y color</div>
   </div>
     
-    <div className="w-[433px] h-[46px] relative rounded-lg border-2 border-cyan-600">
-      <div className="left-[16px] top-[13px] absolute text-sky-200 text-[15px] font-light font-['Open Sans']">Material:</div>
-      <div className="w-6 h-6 left-[91px] top-[11px] absolute bg-emerald-600 rounded border border-blue-50" />
-      <div className="left-[131px] top-[13.50px] absolute text-sky-200 text-sm font-normal font-['Open Sans']">PLA - Verde</div>
+    <div className="w-[433px] h-[46px] relative ">
+      <DropdownAccordion/>
       {/* <div className="w-6 h-6 left-[393px] top-[11px] absolute" />  */}
-      <div className="w-6 h-6 cursor-pointer absolute  left-[393px] top-[11px]">
-<img
-           
-            alt="Iconamoon arrow up"
-            src="/src/assets/img/chevron-right-rounded.png"
-          /> 
-      </div>
+
     </div>
   </div>
   <div className="h-[153px] flex-col justify-center items-start gap-4 flex">
@@ -320,6 +313,8 @@ export default function Calculadora() {
 </div>
 
       </div>
+     
+
     </div>
   );
 }
@@ -341,64 +336,3 @@ export default function Calculadora() {
 
 
 
-
-
-
-
-
-
-
-
-
-/* import React, { useState } from 'react';
-import { IoIosSearch } from 'react-icons/io';
-
-export default function Calculadora() {
-  const [fileName, setFileName] = useState('');
-  const [searchQuery, setSearchQuery] = useState('');
-
-  const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (event.target.files && event.target.files.length > 0) {
-      setFileName(event.target.files[0].name);
-    }
-  };
-
-  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchQuery(event.target.value);
-  };
-
-  return (
-    <div>
-      <div className="w-[614px] h-[490px] bg-cyan-950 rounded-lg border-2 border-cyan-600 flex-col justify-center items-center gap-12 inline-flex">
-        <div className="w-96 h-14 px-4 py-2.5 bg-cyan-600 rounded-lg justify-center items-center gap-3.5 inline-flex hover:shadow-md hover:shadow-cyan-700 transition-shadow duration-200">
-          <input 
-            type="file" 
-            className="hidden" 
-            id="file-upload" 
-            onChange={handleFileUpload} 
-          />
-          <label htmlFor="file-upload" className="cursor-pointer">
-            <img className="mx-auto" src="/src/assets/img/botón-subida-calculadora.svg" alt="Texto alternativo de la imagen" />
-          </label>
-          {fileName && <div className="text-white">{fileName}</div>}
-        </div>
-        <div className="self-stretch h-24 flex-col justify-start items-center gap-4 flex">
-          <div className="self-stretch text-center text-stone-300 text-sm font-medium font-['Open Sans']">
-            o si lo prefieres, puedes
-          </div>
-          <div className="w-96 h-14 px-3.5 py-2.5 bg-neutral-50 rounded-lg border-2 border-cyan-600 flex items-center">
-            <IoIosSearch className="text-cyan-950 text-xl ml-6 mr-2" />
-            <input 
-              type="text" 
-              className="flex-grow bg-transparent outline-none text-cyan-950 text-base font-semibold font-['Open Sans'] placeholder-cyan-950" 
-              placeholder="Encontrar uno en nuestro buscador" 
-              value={searchQuery} 
-              onChange={handleSearchChange} 
-            />
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
- */
