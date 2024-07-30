@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { RiArrowRightSLine } from "react-icons/ri";
 import CalculoPrices from "./CalculoPrices";
+import apiJSON from '../zustand/productos.json';
 // import { useLocation } from 'wouter';
 // import useStore from "../zustand/store";
 
@@ -26,16 +27,26 @@ function FilterCategories() {
     Insumos: false,
   });
 
-  const categorias = [
-    {
-      headerCategory: 'Productos_3D',
-      categories: ['Accesorios', 'Decoración', 'Figuras de Acción', 'Industrial', 'Mates', 'Oficina', 'Productos Personalizados']
-    },
-    {
-      headerCategory: 'Insumos',
-      categories: ['Accesorios de Impresión', 'Almacenamiento y Cuidado', 'Filamentos', 'Polvos', 'Resinas']
-    },
-  ];
+  // CODIGO PROVICIONAL PARA PROBAR FILTRADO
+  // const categorias = [
+  //   {
+  //     "categoria": {
+  //       "id": 1,
+  //       "nombre": "Productos_3D",
+  //       "tipos": ['Accesorios', 'Decoración', 'Figuras de Acción', 'Industrial', 'Mates', 'Oficina', 'Productos Personalizados']
+  //     }
+  //   },
+  //   {
+  //     "categoria": {
+  //       "id": 1,
+  //       "nombre": "Insumos",
+  //       "tipos": ['Accesorios de Impresión', 'Almacenamiento y Cuidado', 'Filamentos', 'Polvos', 'Resinas']
+  //     }
+  //   }
+  // ];
+
+  const test = apiJSON;
+
 
   const handleToogle = (catego: string) => {
     setOpenStates(prev => ({ ...prev, [catego]: !prev[catego] }));
@@ -59,22 +70,22 @@ function FilterCategories() {
             </section>
           </div>
           <div className={`transition-height duration-[205ms] ${openCategories ? 'max-h-[1000px]' : 'max-h-0 overflow-hidden'}`}>
-            {categorias.map((ct, i) => (
+            {test.map((ct, i) => (
               <section key={i}>
                 <div
-                  onClick={() => handleToogle(ct.headerCategory)}
+                  onClick={() => handleToogle(ct.categoria.nombre)}
                   className={`cursor-pointer pl-2 hover:bg-primary-darker transition w-full h-10 p-2 justify-between items-center flex
-                    ${ct.headerCategory === 'Insumos' ? (openStates[ct.headerCategory] ? 'rounded-br-none rounded-bl-none' : 'rounded-bl-xl rounded-br-xl hover:rounded-bl-xl hover:rounded-br-xl') : ''}
+                    ${ct.categoria.nombre === 'Insumos' ? (openStates[ct.categoria.nombre] ? 'rounded-br-none rounded-bl-none' : 'rounded-bl-xl rounded-br-xl hover:rounded-bl-xl hover:rounded-br-xl') : ''}
                   `}
                 >
-                  <h2 className="text-sm">{ct.headerCategory}</h2>
-                  <section className={`transition-transform duration-[205ms] ${openStates[ct.headerCategory] ? 'rotate-90' : 'rotate-0'}`}>
+                  <h2 className="text-sm">{ct.categoria.nombre}</h2>
+                  <section className={`transition-transform duration-[205ms] ${openStates[ct.categoria.nombre] ? 'rotate-90' : 'rotate-0'}`}>
                     <RiArrowRightSLine className="w-6 h-6" />
                   </section>
                 </div>
 
-                <div className={`transition-height duration-[205ms]  ${openStates[ct.headerCategory] ? 'max-h-[1000px]' : 'max-h-0 overflow-hidden'}`}>
-                  {ct.categories.map((item, idx) => (
+                <div className={`transition-height duration-[205ms]  ${openStates[ct.categoria.nombre] ? 'max-h-[1000px]' : 'max-h-0 overflow-hidden'}`}>
+                  {ct.categoria.tipos.map((item, idx) => (
                     <p key={idx} className={`cursor-pointer text-sm pl-4 py-3 w-full text-start font-thin hover:bg-primary-darker transition duration-[205ms]
                       ${item === 'Resinas' ? 'rounded-br-xl transition hover:rounded-bl-xl hover:rounded-br-xl ' : 'rounded-br-none rounded-bl-none'}
                     `}>

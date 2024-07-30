@@ -5,7 +5,7 @@ import { Link } from 'wouter';
 type CardProps = {
   image: string,
   title: string,
-  price: string
+  price: string | number
 }
 
 const ProductCard: FunctionComponent<CardProps> = ({ image, title, price }) => {
