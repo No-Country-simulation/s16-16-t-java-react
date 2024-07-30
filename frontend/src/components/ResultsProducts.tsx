@@ -3,6 +3,7 @@ import ProductCard from './ProductCard'
 import { PropProduct } from '../zustand/interfaces';
 import { useEffect, useState } from 'react';
 import { transformProducts } from '../helpers/transformProducts';
+import useStore from '../zustand/store';
 
 type ProductsProps = {
   countProducts: (product: number) => void
@@ -11,7 +12,9 @@ type ProductsProps = {
 }
 
 const ResultsProducts: React.FC<ProductsProps> = ({ selectCategories, countProducts, orderProduct }) => {
+  const { maxPrice, minPrice } = useStore();
   const [products, setProducts] = useState<PropProduct[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -26,14 +29,20 @@ const ResultsProducts: React.FC<ProductsProps> = ({ selectCategories, countProdu
         setProducts(transformProducts(data));
       } catch (e) {
         console.error('Error al obtener los productos:', e);
+      } finally {
+        setLoading(false);
       }
     }
     fetchProducts();
   }, [])
 
-  const filteredProducts = selectCategories.length > 0
-    ? products.filter(product => selectCategories.includes(product.categoria.nombre))
-    : products;
+  // console.log(minPrice, maxPrice);
+  // FILTRADO GENERAL
+  const filteredProducts = products.filter(product => {
+    const categoryMatch = selectCategories.length < 1 || selectCategories.includes(product.categoria.nombre);
+    const priceMatch = product.precio >= minPrice && product.precio <= maxPrice;
+    return categoryMatch && priceMatch;
+  });
 
   // CONTEO DE LOS PRODUCTOS PARA ENVIARLOS AL COMPONENTE PADRE
   useEffect(() => {
@@ -42,7 +51,7 @@ const ResultsProducts: React.FC<ProductsProps> = ({ selectCategories, countProdu
 
 
   // Ordenar productos por precio
-  const sortedProducts = [...filteredProducts].sort((a, b) => {
+  const sortedProducts: PropProduct[] = [...filteredProducts].sort((a, b) => {
     if (orderProduct === 'alto') {
       return a.precio - b.precio; // Orden ascendente
     } else if (orderProduct === 'bajo') {
@@ -52,16 +61,30 @@ const ResultsProducts: React.FC<ProductsProps> = ({ selectCategories, countProdu
   });
 
   return (
-    <article className="mt-[17px] grid grid-cols-3 gap-5">
-      {sortedProducts.map(product => (
-        <ProductCard
-          key={product.id}
-          image={product.imageUrl || ''}
-          title={product.nombre}
-          price={`$ ${product.precio}`}
-        />
-      ))}
-    </article>
+    <div>
+      {loading ? (
+        <div className="flex flex-row gap-2 items-center justify-center mt-20">
+          <div className="w-12 h-12 rounded-full bg-primary-normal animate-bounce [animation-delay:.7s]"></div>
+          <div className="w-12 h-12 rounded-full bg-primary-normal animate-bounce [animation-delay:.3s]"></div>
+          <div className="w-12 h-12 rounded-full bg-primary-normal animate-bounce [animation-delay:.7s]"></div>
+        </div>
+      ) : (
+        <article className="mt-[17px] grid grid-cols-3 gap-5">
+          {sortedProducts.length > 0 ? (
+            sortedProducts.map(product => (
+              <ProductCard
+                key={product.id}
+                image={product.imageUrl || ''}
+                title={product.nombre}
+                price={`$ ${product.precio}`}
+              />
+            ))
+          ) : (
+            <div>No hay productos disponibles</div>
+          )}
+        </article>
+      )}
+    </div>
   )
 }
 
