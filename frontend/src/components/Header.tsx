@@ -23,7 +23,7 @@ function Header() {
                     <FaTruckFast className="w-5 h-4" />
                 </div>
             </section>
-            <section className="pt-4 pb-6 bg-neutral-darker flex items-center gap-9">
+            <section className="pt-4 pb-6 bg-primary-darker flex items-center gap-9">
                 <section className="max-w-7xl flex items-center gap-9 m-auto">
                     <div className="">
                         <span className="block w-32 h-32 relative bg-neutral-400 rounded-lg"></span>
@@ -31,13 +31,13 @@ function Header() {
                     <article className="flex-col gap-9 flex">
                         <section className="flex items-center gap-6">
                             <SearchInput />
-                            <Link to={'/myAccount'} className="flex flex-col items-center gap-2">
+                            <Link to={'/myAccount'} className="flex flex-col items-center gap-2 group">
                                 <img src={Micuenta} className="h-12 object-cover"/>
-                                <p className="text-white text-sm font-normal leading-4">Mi Cuenta</p>
+                                <p className="text-white text-sm font-normal leading-4 group-hover:text-primary-normal">Mi Cuenta</p>
                             </Link>
                             <button onClick={toggleCart} className="flex flex-col items-center gap-2 relative">
                                 <img src={Carrito} className="h-12 object-cover"/>
-                                <p className="text-white text-sm font-normal leading-4">Mi Carrito</p>
+                                <p className="text-white text-sm font-normal leading-4 group-hover:text-primary-normal">Mi Carrito</p>
                                 <span className="absolute rounded-full w-5 h-5 grid place-items-center right-0 top-[-5px] bg-primary-light-active text-primary-dark font-bold text-sm">
                                     0
                                 </span>

@@ -1,13 +1,24 @@
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import NavMiCuenta from "../components/NavMiCuenta";
-// import Orders from "../components/Orders";
-// import ProductsEmpty from "../components/ProductsEmpty";
-// import MyData from "../components/MyData";
-// import InvoiceData from "../components/InvoiceData";
+import Orders from "../components/Orders";
+import InvoiceData from "../components/InvoiceData";
 import PaymentData from "../components/PaymentData";
+import MyData from "../components/MyData";
+import { useRoute } from "wouter";
+// import useStore from "../zustand/store";
 
 function MyAccount() {
+  // VIAJANDO LA INFORMACION CON LA RUTA
+  // const { state } = useStore();
+  // console.log(state);
+
+  const [pathOrder] = useRoute('/myAccount/pedidos');
+  const [pathCuenta] = useRoute('/myAccount/cuenta');
+  const [pathInvoice] = useRoute('/myAccount/facturacion');
+  const [pathPaymant] = useRoute('/myAccount/pagos');
+
+
   return (
     <div className="flex flex-col min-h-screen bg-background">
       <Header />
@@ -18,11 +29,11 @@ function MyAccount() {
             <NavMiCuenta />
           </section>
           <section className="w-[615px]">
-            {/* <ProductsEmpty /> */}
-            {/* <Orders /> */}
-            {/* <MyData /> */}
-            {/* <InvoiceData /> */}
-            <PaymentData />
+            {pathOrder ? <Orders />
+              : (pathCuenta ? <MyData />
+                : (pathInvoice ? <InvoiceData />
+                  : (pathPaymant ? <PaymentData />
+                    : '')))}
           </section>
         </article>
       </main>

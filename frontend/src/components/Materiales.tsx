@@ -14,7 +14,7 @@ export default function Materiales() {
     <div className="text-neutral-50 text-lg font-semibold font-['Open Sans'] leading-snug">TECNOLOGÍA</div>
 </div> */}
 
-<div className="text-neutral-50 text-2xl font-semibold font-['Open Sans'] text-left w-full mb-4 ml-28">
+<div className="text-neutral-50 text-2xl font-semibold font-['Open Sans'] text-left w-full mb-4 ml-[223px]">
         Tabla comparativa de materiales 3D
       </div>
 

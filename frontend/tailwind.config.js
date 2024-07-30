@@ -4,6 +4,9 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      transitionProperty: {
+        'transition-height': 'max-height 0.3s ease',
+      },
       fontFamily: {
         sans: ["ui-sans-serif", "system-ui"],
         openSans: ["Open Sans", "sans-serif"],

@@ -2,7 +2,9 @@
 
 export const BannerPasos = () => {
     return (
-      <div className="relative w-[1281px] h-[280px] bg-primariodarker border-solid border-primarionormal bg-cyan-950 border-2 border-sky-500">
+<div className="container mx-auto flex justify-center" >
+
+      <div className="relative w-[1281px] h-[280px] bg-primariodarker border-solid border-primarionormal bg-cyan-950 border-2 border-neutral-400">
         <div className="absolute w-[1073px] h-[175px] top-[71px] left-[103px]">
           <div className="absolute w-[129px] h-[153px] top-[3px] left-0">
             <div className="absolute w-[127px] h-[113px] top-0 left-0">
@@ -96,6 +98,7 @@ export const BannerPasos = () => {
         <p className="absolute top-[21px] left-[451px] [font-family:'Open_Sans',Helvetica] font-semibold text-neutralnormal text-2xl tracking-[0] leading-[normal]">
           Tu impresión 3D en sólo 5 pasos
         </p>
+      </div>
       </div>
     );
   };

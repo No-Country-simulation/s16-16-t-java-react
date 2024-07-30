@@ -6,8 +6,8 @@ import facturacion from '../assets/icono-facturacion-white.svg';
 import facturacionHover from '../assets/icono-facturacion-skyblue.svg';
 import pedidos from '../assets/icono-pedidos-white.svg';
 import pedidosHover from '../assets/icono-pedidos-skyblue.svg';
-import { Link } from "wouter";
 import { useState } from "react";
+import { Link } from 'wouter';
 
 type hovers = {
   isPedidos: boolean;
@@ -16,13 +16,14 @@ type hovers = {
   isPagos: boolean;
 };
 
-function NavMiCuenta() {
+function NavMiCuenta () {
   const [isHovered, setIsHovered] = useState<hovers>({
     isPedidos: false,
     isMiCuenta: false,
     isFacturacion: false,
     isPagos: false
   });
+
   const iconActive = (icon: string) => setIsHovered(prev => ({ ...prev, [icon]: true }));
   const iconDesactive = (icon: string) => setIsHovered(prev => ({ ...prev, [icon]: false }));
 
@@ -32,16 +33,16 @@ function NavMiCuenta() {
         <div className="flex flex-col gap-2">
           {[
             ['isPedidos', 'pedidos', 'Mis pedidos', isHovered.isPedidos ? pedidosHover : pedidos],
-            ['isMiCuenta', 'pedidos', 'Mi cuenta', isHovered.isMiCuenta ? MicuentaHover : Micuenta],
-            ['isFacturacion', 'empty', 'Datos de facturación', isHovered.isFacturacion ? facturacionHover : facturacion],
-            ['isPagos', 'pedidos', 'Métodos de pago', isHovered.isPagos ? pagosHover : pagos],
+            ['isMiCuenta', 'cuenta', 'Mi cuenta', isHovered.isMiCuenta ? MicuentaHover : Micuenta],
+            ['isFacturacion', 'facturacion', 'Datos de facturación', isHovered.isFacturacion ? facturacionHover : facturacion],
+            ['isPagos', 'pagos', 'Datos de pago', isHovered.isPagos ? pagosHover : pagos],
           ].map(([option, link, text, hovered]) => (
             <Link key={option} to={`/myAccount/${link}`}>
               <div
                 onMouseEnter={() => iconActive(option)}
                 onMouseLeave={() => iconDesactive(option)}
                 className="flex gap-4 cursor-pointer group items-center w-[341px] h-14 px-4 border-b-2 border-neutral-normal">
-                <img src={hovered} alt="Pedidos" />
+                <img src={hovered} alt={text} />
                 <p className="group-hover:font-bold group-hover:text-primary-normal">{text}</p>
               </div>
             </Link>
