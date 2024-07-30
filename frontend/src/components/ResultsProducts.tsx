@@ -7,9 +7,10 @@ import { transformProducts } from '../helpers/transformProducts';
 type ProductsProps = {
   countProducts: (product: number) => void
   selectCategories: string[]
+  orderProduct: string
 }
 
-const ResultsProducts: React.FC<ProductsProps> = ({ selectCategories, countProducts  }) => {
+const ResultsProducts: React.FC<ProductsProps> = ({ selectCategories, countProducts, orderProduct }) => {
   const [products, setProducts] = useState<PropProduct[]>([]);
 
   useEffect(() => {
@@ -23,26 +24,36 @@ const ResultsProducts: React.FC<ProductsProps> = ({ selectCategories, countProdu
 
         // obtener los productos pero con la imagen transformada
         setProducts(transformProducts(data));
-
       } catch (e) {
         console.error('Error al obtener los productos:', e);
       }
     }
     fetchProducts();
-  })
+  }, [])
 
-  const test = products;
+  const filteredProducts = selectCategories.length > 0
+    ? products.filter(product => selectCategories.includes(product.categoria.nombre))
+    : products;
 
-  const filteredProducts = test
-    .filter(product => product.nombre !== 'Producto pepe 2' && product.nombre !== 'Mesa industrial')
-    .filter(product => selectCategories.includes(product.categoria.nombre));
+  // CONTEO DE LOS PRODUCTOS PARA ENVIARLOS AL COMPONENTE PADRE
+  useEffect(() => {
+    countProducts(filteredProducts.length);
+  }, [filteredProducts, countProducts]);
 
 
-  countProducts(filteredProducts.length > 0 ? filteredProducts.length : test.length);
+  // Ordenar productos por precio
+  const sortedProducts = [...filteredProducts].sort((a, b) => {
+    if (orderProduct === 'alto') {
+      return a.precio - b.precio; // Orden ascendente
+    } else if (orderProduct === 'bajo') {
+      return b.precio - a.precio; // Orden descendente
+    }
+    return 0;
+  });
 
   return (
     <article className="mt-[17px] grid grid-cols-3 gap-5">
-      {(filteredProducts.length > 0 ? filteredProducts : test).map(product => (
+      {sortedProducts.map(product => (
         <ProductCard
           key={product.id}
           image={product.imageUrl || ''}
@@ -54,4 +65,4 @@ const ResultsProducts: React.FC<ProductsProps> = ({ selectCategories, countProdu
   )
 }
 
-export default ResultsProducts
+export default ResultsProducts;

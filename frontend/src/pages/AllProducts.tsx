@@ -9,6 +9,7 @@ import { useState } from "react";
 function AllProducts() {
   const [selectCategory, setSelectCategory] = useState<string[]>([]);
   const [lengthProduct, setLengthProduct] = useState<number>(0);
+  const [orderCategory, setOrderCategory] = useState<string>('');
 
   const handleNameCategory = (nameCategory: string) => {
     setSelectCategory(prev => [...prev, nameCategory])
@@ -16,6 +17,10 @@ function AllProducts() {
   const removeCategory = (result: string) => {
     const newCategories = selectCategory.filter(category => category !== result);
     setSelectCategory(newCategories)
+  }
+
+  const handleOrder = (order: string) => {
+    setOrderCategory(order)
   }
 
   return (
@@ -50,9 +55,12 @@ function AllProducts() {
                   ))}
                 </section>
               </div>
-              <OrderProducts />
+              <OrderProducts
+                orderProduct={(stringOrder) => handleOrder(stringOrder)}
+              />
             </div>
             <ResultsProducts
+              orderProduct={orderCategory}
               selectCategories={selectCategory}
               countProducts={(product) => setLengthProduct(product)}
             />
