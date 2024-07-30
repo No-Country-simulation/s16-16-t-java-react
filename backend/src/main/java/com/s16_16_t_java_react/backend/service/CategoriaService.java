@@ -12,7 +12,7 @@ public interface CategoriaService {
 
     CategoriaDto findById(Integer id);
 
-    CategoriaDto update(Integer idCategoria, CategoriaDto categoriasDto);
+    CategoriaDto update(Integer id, CategoriaDto categoriaDto);
 
-    CategoriaDto delete(Integer idCategoria);
+    CategoriaDto delete(Integer id);
 }

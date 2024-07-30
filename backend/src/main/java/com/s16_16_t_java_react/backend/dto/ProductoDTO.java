@@ -1,9 +1,11 @@
 package com.s16_16_t_java_react.backend.dto;
 
+
 import lombok.Data;
 
+
 @Data
-public class ProductoDTO {
+public class ProductoDto {
     private String nombre;
     private String descripcion;
     private Double precio;
