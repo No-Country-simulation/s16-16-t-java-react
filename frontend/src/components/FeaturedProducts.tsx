@@ -1,35 +1,10 @@
 import ProductCard from './ProductCard'
-import { useEffect, useState } from 'react'
-import { PropProduct } from '../zustand/interfaces'
-import { transformProducts } from '../helpers/transformProducts'
 import { Link } from 'wouter'
 import useStore from '../zustand/store'
 
 
 const FeaturedProducts = () => {
-  const [products, setProducts] = useState<PropProduct[]>([]);
-  const { addToCart } = useStore()
-
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const response = await fetch('https://spring-postgres-ds9s.onrender.com/productos');
-        if (!response.ok) {
-          throw new Error('Error al obtener los productos');
-        }
-        const data: PropProduct[] = await response.json();
-
-        // obtener los productos pero con la imagen transformada
-        setProducts(transformProducts(data));
-
-      } catch (e) {
-        console.error('Error al obtener los productos:', e);
-      }
-    }
-    fetchProducts();
-  }, [])
-
-
+  const { addToCart, products } = useStore()
 
   return (
     <section className='pb-16 px-[104px]'>
@@ -39,7 +14,6 @@ const FeaturedProducts = () => {
       </div>
       <div className='grid grid-cols-4 grid-rows-2 gap-6'>
         {products
-          .filter(product => product.nombre !== 'Producto pepe 2' && product.nombre !== 'Mesa industrial')
           .slice(0, 8)
           .map(product => (
             <ProductCard

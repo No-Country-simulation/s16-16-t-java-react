@@ -4,6 +4,7 @@ export interface PropProduct {
   descripcion: string;
   precio: number;
   stock: number;
+  quantity: number; 
   categoria: {
     id: number;
     nombre: string;

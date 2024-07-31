@@ -2,18 +2,15 @@ import { useState } from 'react';
 import { MdOutlineKeyboardArrowRight, MdOutlineKeyboardArrowLeft } from "react-icons/md";
 import ProductCard from './ProductCard';
 import useStore from '../zustand/store';
-
+import { PropProduct } from '../zustand/interfaces';
 
 interface Card {
-  image: string;
-  title: string;
-  price: string;
-  id: number;
+  cards: PropProduct[]
 }
 
-const CarrouselCards: React.FC = ({ cards }) => {
+const CarrouselCards: React.FC<Card> = ({ cards }) => {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
-  
+
   const visibleCount = 4;
   const totalCards = cards.length;
   const maxIndex = totalCards - visibleCount;
@@ -39,7 +36,13 @@ const CarrouselCards: React.FC = ({ cards }) => {
         >
           {cards.map((card, i) => (
             <div key={i} className={`flex-none w-full sm:w-[280px]`}>
-                <ProductCard id={card.id} addToCart={()=>addToCart(card)} image={card.imageUrl} title={card.nombre} price={`$${card.precio}`} />
+              <ProductCard
+                id={card.id}
+                addToCart={() => addToCart(card)}
+                image={card.imageUrl || ''}
+                title={card.nombre}
+                price={`$${card.precio}`}
+              />
             </div>
           ))}
         </div>

@@ -2,6 +2,7 @@ import { FunctionComponent } from 'react';
 import CartIcon from '../assets/icono-mi-carrito-white.svg';
 import eyeIcon from '../assets/eyeIcon.svg';
 import { Link } from 'wouter';
+import useStore from '../zustand/store';
 
 type CardProps = {
   image: string,
@@ -10,10 +11,14 @@ type CardProps = {
   addToCart: () => void,
   id: number
 };
-
 const ProductCard: FunctionComponent<CardProps> = ({ image, title, price, addToCart, id }) => {
+  const { clearSelectedCategory } = useStore();
+
   return (
-    <div className="font-openSans w-[250px] bg-neutral-500/60 flex flex-col px-4 pb-4 items-start border-[1.2px] border-neutral-dark-hover rounded-lg">
+    <div
+      onClick={() => clearSelectedCategory()}
+      className="font-openSans w-[250px] bg-neutral-500/60 flex flex-col px-4 pb-4 items-start border-[1.2px] border-neutral-dark-hover rounded-lg"
+    >
       <Link to={`/detailProduct/${id}`} className='w-full'>
         <div className='w-[218px] h-[232px] border-b-[1.5px] p-5'>
           <img src={image} className='w-full h-full object-cover' />

@@ -14,30 +14,51 @@ import ResultImg from "./components/ResultImg";
 import { useEffect } from "react";
 import useStore from "./zustand/store";
 import { transformProducts } from "./helpers/transformProducts";
+import { propCategories } from "./zustand/interfaces";
 
 const App = () => {
-  const { setProducts } = useStore()
-  
+  const { setProducts, setLoading, setCategories } = useStore()
+
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         const response = await fetch('https://spring-postgres-ds9s.onrender.com/productos');
         const data = await response.json();
-          if (response.ok) {
-            const transformedProduct = transformProducts(data);
-            setProducts(transformedProduct)
+        if (response.ok) {
+          const transformedProduct = transformProducts(data);
+          setProducts(transformedProduct)
         } else {
           console.error('Error al cargar los productos:', data.message)
         }
-      } catch (err) {
-        console.error('Error al cargar los productos:', err.message)
+      } catch (e) {
+        console.error('Error al cargar los productos:', e)
+      } finally {
+        setLoading(false)
       }
     };
 
     fetchProducts();
-  }, [setProducts])
+  }, [setProducts, setLoading])
 
-  return(
+
+  useEffect(() => {
+    const getCategories = async () => {
+      try {
+        const response = await fetch('https://spring-postgres-ds9s.onrender.com/api/categoria');
+        if (!response.ok) {
+          throw new Error('Error al obtener las categorias');
+        }
+        const data: propCategories[] = await response.json();
+        setCategories(data);
+
+      } catch (e) {
+        console.error('Imposible solicitar categorias:', e);
+      }
+    }
+    getCategories();
+  }, [setCategories])
+
+  return (
     <>
       <ScrollToTop />
       <Switch>
@@ -57,6 +78,7 @@ const App = () => {
         <Route><Error404 /></Route>
       </Switch>
     </>
-  )}
+  )
+}
 
 export default App;

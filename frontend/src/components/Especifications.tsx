@@ -1,7 +1,12 @@
 import { useState } from 'react';
 import JhonDoe from '../assets/jhonDoe.png';
 
-function Especifications({name, descrption}) {
+interface propEspecifications {
+  name: string
+  description: string
+}
+
+const Especifications: React.FC<propEspecifications> = ({ name, description }) => {
   const [option, setOption] = useState<string>('');
   return (
     <>
@@ -19,7 +24,7 @@ function Especifications({name, descrption}) {
           ? (
             <div className='mb-16'>
               <p>Figura en 3D - {name}</p>
-              <p>{descrption}</p>
+              <p>{description}</p>
             </div>
           )
           : (option === 'Especificaciones'

@@ -10,36 +10,42 @@ import CarrouselCards from '../components/CarrouselCards';
 import Especifications from '../components/Especifications';
 import useStore from '../zustand/store';
 import { useEffect, useState } from 'react';
+import { PropProduct } from '../zustand/interfaces';
 
 function DetailProduct() {
+  const { clearSelectedCategory, setSelectedCategory, selectedCategory, addToCart, products } = useStore();
+  const [product, setProduct] = useState<PropProduct | null>(null);
+  const [relatedProducts, setRelatedProducts] = useState<PropProduct[]>([]);
+  const { id } = useParams();
 
-const { addToCart, products } = useStore()
-const [product, setProduct] = useState({})
-const [relatedProducts, setRelatedProducts] = useState([])
-const { id } = useParams()
+  useEffect(() => {
+    if (products && products.length > 0) {
+      const selectedProduct = products.find((p) => p.id === Number(id));
+      if (selectedProduct) {
+        setProduct(selectedProduct);
 
-useEffect(() => {
-  if (products && products.length > 0) {
-    const selectedProduct = products.find((p) => p.id === Number(id));
-    if (selectedProduct) {
-      setProduct(selectedProduct);
-      
-      const related = products.filter((p) => p.categoria.id === selectedProduct?.categoria.id && p.id !== Number(id));
-      setRelatedProducts(related)
-    } else {
-      console.error("Producto no encontrado:", id);
+        clearSelectedCategory();
+        setSelectedCategory(selectedProduct.categoria.nombre);
+
+        const related = products.filter((p) => p.categoria.id === selectedProduct.categoria.id && p.id !== Number(id));
+        setRelatedProducts(related);
+      } else {
+        console.error("Producto no encontrado:", id);
+      }
     }
+  }, [id, products, setSelectedCategory, clearSelectedCategory]);
+
+  if (!product) {
+    return <div>Cargando...</div>;
   }
-}, [id, products])
-
-
+  console.log(selectedCategory)
   return (
     <div className="font-openSans flex flex-col min-h-screen bg-background">
       <Header />
       <main className="flex-grow">
         <div className='mt-12 px-[110px] max-w-7xl m-auto text-start font-base font-bold flex gap-2 justify-start w-full'>
-          <Link to={'/allProducts'}>Productos / </Link>
-          <Link to={'/allProducts'}>{product.categoria ? `${product.categoria.nombre} / ` : 'Sin categoría / '}</Link>
+          <span onClick={()=>clearSelectedCategory()}><Link to={'/allProducts'} className="text-slate-600 hover:text-slate-500">Productos / </Link></span>
+          <Link to={'/allProducts'} className="text-slate-400 hover:text-slate-300">{product.categoria ? `${product.categoria.nombre} / ` : 'Sin categoría / '}</Link>
           <span className="text-primary-normal">{product.nombre}</span>
         </div>
         <article className='mt-2 px-[110px] max-w-7xl m-auto text-start font-base font-bold flex gap-28 justify-start w-full'>
@@ -48,14 +54,9 @@ useEffect(() => {
               <img className="h-full w-full object-cover" src={product.imageUrl} />
             </div>
             <div className='flex flex-wrap gap-2 mt-2'>
-              {[
-                [product],
-                [product],
-              ].map(([img], i) => (
-                <div key={i} className='hover:bg-neutral-normal/10 cursor-pointer w-[99px] h-[84px] rounded-lg border border-neutral-dark-hover'>
-                  <img className="w-full h-full object-cover" src={img} />
-                </div>
-              ))}
+              <div className='hover:bg-neutral-normal/10 cursor-pointer w-[99px] h-[84px] rounded-lg border border-neutral-dark-hover'>
+                <img className="w-full h-full object-cover" src={product.imageUrl} />
+              </div>
             </div>
           </section>
           <section className='flex flex-col gap-8'>
@@ -72,7 +73,7 @@ useEffect(() => {
               <p className='flex gap-2 items-center'><img src={truck} /> <span className='text-lg font-normal leading-snug'>Envíos a todo el País</span></p>
               <p className='cursor-pointer flex gap-2 items-center text-primary-normal hover:text-primary-dark-hover underline'><img src={card} /> <span className='text-lg font-normal leading-snug'>Ver Medios de Pago</span></p>
             </div>
-            <button onClick={()=> addToCart(product)} className='w-[157px] h-[38px] px-1 py-2 bg-primary-normal hover:bg-primary-normal-hover rounded justify-center items-center gap-2 flex'>
+            <button onClick={() => addToCart(product)} className='w-[157px] h-[38px] px-1 py-2 bg-primary-normal hover:bg-primary-normal-hover rounded justify-center items-center gap-2 flex'>
               <img src={carrito} />
               <p className='text-lg font-semibold'>AGREGAR</p>
             </button>
