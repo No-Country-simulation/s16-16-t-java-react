@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'wouter';
+import DropdownAccordion from './DropdownAccordion';
 
 export default function Calculadora() {
   const [fileName, setFileName] = useState<string>('');
@@ -71,17 +72,8 @@ export default function Calculadora() {
                 </div>
                 <div className="w-[253px] h-[29px] text-neutral-50 text-2xl font-semibold font-['Open Sans'] -ml-10">Material y color</div>
               </div>
-              <div className="w-[433px] h-[46px] relative rounded-lg border-2 border-cyan-600">
-                <div className="left-[16px] top-[13px] absolute text-sky-200 text-[15px] font-light font-['Open Sans']">Material:</div>
-                <div className="w-6 h-6 left-[91px] top-[11px] absolute bg-emerald-600 rounded border border-blue-50" />
-                <div className="left-[131px] top-[13.50px] absolute text-sky-200 text-sm font-normal font-['Open Sans']">PLA - Verde</div>
-                {/* <div className="w-6 h-6 left-[393px] top-[11px] absolute" />  */}
-                <div className="w-6 h-6 cursor-pointer absolute  left-[393px] top-[11px]">
-                  <img
-                    alt="Iconamoon arrow up"
-                    src="/src/assets/img/chevron-right-rounded.png"
-                  />
-                </div>
+              <div >
+              <DropdownAccordion/>
               </div>
             </div>
             <div className="h-[153px] flex-col justify-center items-start gap-4 flex">
