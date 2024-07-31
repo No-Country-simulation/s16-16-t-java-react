@@ -23,7 +23,7 @@ const App = () => (
       <Route path="/myAccount/cuenta" component={MyAccount} />
       <Route path="/myAccount/facturacion" component={MyAccount} />
       <Route path="/myAccount/pagos" component={MyAccount} />
-      <Route path="/detailProduct" component={DetailProduct} />
+      <Route path="/detailProduct/:id" component={DetailProduct} />
       <Route path="/designGuide" component={DesignGuide} />
       <Route path="/calculator" component={Newcalculator} />
       <Route path="/Login" component={Login} />

@@ -26,7 +26,6 @@ const Cart = ({open, onClose }) => {
       onClose()
     }
   }
-  console.log(cart);
   
   const handleInputChange = (e) => {
     setDireccion(e.target.value)

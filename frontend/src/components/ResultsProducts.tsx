@@ -40,6 +40,7 @@ const ResultsProducts: React.FC<ProductsProps> = ({ selectCategories, countProdu
           title={product.nombre}
           price={`$ ${product.precio}`}
           addToCart={() => addToCart(product)}
+          id={product.id}
         />
       ))}
     </article>

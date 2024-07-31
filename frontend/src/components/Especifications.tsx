@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import JhonDoe from '../assets/jhonDoe.png';
 
-function Especifications() {
+function Especifications(name, descrption) {
   const [option, setOption] = useState<string>('');
   return (
     <>
