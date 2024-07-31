@@ -1,65 +1,79 @@
-import { useState } from "react";
-import { RiArrowRightSLine, RiArrowDownSLine } from "react-icons/ri";
+import { useEffect, useState } from "react";
+import { RiArrowRightSLine } from "react-icons/ri";
 import CalculoPrices from "./CalculoPrices";
+// import categoriasJSON from '../zustand/categorias.json';
+import { propCategories } from "../zustand/interfaces";
 
-function FilterCategories() {
+type categoryProps = {
+  setNameCategory: (nameCategory: string) => void
+  selectCategories: string[]
+}
+
+const FilterCategories: React.FC<categoryProps> = ({ setNameCategory, selectCategories }) => {
+  const [categories, setCategories] = useState<propCategories[]>([]);
   const [openCategories, setOpenCategories] = useState<boolean>(false);
-  const [openStates, setOpenStates] = useState<{ [key: string]: boolean }>({
-    'Productos 3D': false,
-    'Insumos': false,
-  });
-  const categorias = [
-    {
-      headerCategory: 'Productos 3D',
-      categories: ['Accesorios', 'Decoración']
-    },
-    {
-      headerCategory: 'Insumos',
-      categories: ['Accesorios de Impresión', 'Almacenamiento y Cuidado']
-    },
-  ]
-  const handleToogle = (catego: string) => {//pepe
-    setOpenStates(prev => ({...prev, [catego]: !prev[catego]}));
+
+  useEffect(() => {
+    const getCategories = async () => {
+      try {
+        const response = await fetch('https://spring-postgres-ds9s.onrender.com/api/categoria');
+        if (!response.ok) {
+          throw new Error('Error al obtener las categorias');
+        }
+        const data: propCategories[] = await response.json();
+        setCategories(data);
+
+      } catch (e) {
+        console.error('Imposible solicitar categorias:', e);
+      }
+    }
+    getCategories();
+  },)
+
+  const handleCategories = (categorie: string) => {
+    if (!(selectCategories.includes(categorie))) {
+      setNameCategory(categorie);
+    }
   }
+
+  const test = categories;
+
   return (
     <section className="w-[250px] sticky top-10 mt-16">
       <h1 className="text-start text-white text-2xl font-semibold leading-[28.80px]">
         Filtrar Por
       </h1>
       <aside className="mt-2.5 flex flex-col gap-4">
-
         <article className="select-none bg-primary-dark-active rounded-lg border border-neutral-dark-hover">
           <div
             onClick={() => setOpenCategories(!openCategories)}
             className="cursor-pointer w-full h-10 p-2 justify-between items-center flex">
             <h2>Categorías</h2>
-            {openCategories ? <RiArrowDownSLine className="w-6 h-6" /> : <RiArrowRightSLine className="w-6 h-6" />}
-          </div>
-          {openCategories && categorias.map((ct, i) => (
-            <section key={i}>
-              <div
-                onClick={() => handleToogle(ct.headerCategory)} //lotes
-                className="cursor-pointer pl-2 hover:bg-primary-darker transition w-full h-10 p-2 justify-between items-center flex">
-                <h2>{ct.headerCategory}</h2>
-                {openStates[ct.headerCategory] ? <RiArrowDownSLine className="w-6 h-6" /> : <RiArrowRightSLine className="w-6 h-6" />}
-              </div>
-              {openStates[ct.headerCategory]  &&
-                <section>
-                  {ct.categories.map((item, idx) => (
-                    <p key={idx} className="cursor-pointer text-sm pl-4 py-3 w-full text-start font-thin hover:bg-primary-darker transition">
-                      {item}
-                    </p>
-                  ))}
-                </section>
-              }
+            <section className={`transition-transform duration-[300ms] ${openCategories ? 'rotate-90' : 'rotate-0'}`}>
+              <RiArrowRightSLine className="w-6 h-6" />
             </section>
-          ))}
+          </div>
+          <div className={`transition-height duration-[300ms] ${openCategories ? 'max-h-[1000px]' : 'max-h-0 overflow-hidden'}`}>
+            {test?.map((categoria) => (
+              <section key={categoria.id}>
+                <div className="transition-height">
+                  <p
+                    onClick={() => handleCategories(categoria.nombre)}
+                    className={`text-sm pl-4 py-3 w-full text-start font-thin hover:bg-primary-darker transition 
+                    ${selectCategories.includes(categoria.nombre) ? 'bg-primary-darker text-gray-300 select-none cursor-default' : 'cursor-pointer'}
+                    ${categoria.nombre === 'Personalizado' ? 'rounded-br-xl transition hover:rounded-bl-xl hover:rounded-br-xl ' : 'rounded-br-none rounded-bl-none'}
+                  `}>
+                    {categoria.nombre}
+                  </p>
+                </div>
+              </section>
+            ))}
+          </div>
         </article>
-
         <CalculoPrices />
       </aside>
     </section>
-  )
+  );
 }
 
-export default FilterCategories
+export default FilterCategories;

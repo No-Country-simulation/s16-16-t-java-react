@@ -1,13 +1,15 @@
 package com.s16_16_t_java_react.backend.controller;
 
-import com.s16_16_t_java_react.backend.dto.ProductoDTO;
+import com.s16_16_t_java_react.backend.dto.CategoriaDto;
+import com.s16_16_t_java_react.backend.dto.ProductoDto;
 import com.s16_16_t_java_react.backend.entities.Categoria;
 import com.s16_16_t_java_react.backend.entities.Imagen;
 import com.s16_16_t_java_react.backend.entities.Producto;
-import com.s16_16_t_java_react.backend.service.ICategoriaService;
 import com.s16_16_t_java_react.backend.service.IImagenService;
 import com.s16_16_t_java_react.backend.service.IProductoService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.s16_16_t_java_react.backend.service.impl.CategoriaServiceImpl;
+
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -28,9 +30,9 @@ public class ProductoController {
 
     private IImagenService imagenService;
 
-    private ICategoriaService categoriaService;
+    private CategoriaServiceImpl categoriaService;
 
-    public ProductoController(IProductoService service, IImagenService imagenService, ICategoriaService categoriaService) {
+    public ProductoController(IProductoService service, IImagenService imagenService, CategoriaServiceImpl categoriaService) {
         this.service = service;
         this.imagenService = imagenService;
         this.categoriaService = categoriaService;
@@ -49,14 +51,14 @@ public class ProductoController {
     }
 
     @PostMapping
-    public ResponseEntity<?> saveProducto(@RequestPart ProductoDTO producto,
+    public ResponseEntity<?> saveProducto(@RequestPart ProductoDto producto,
                                  @RequestPart MultipartFile file) throws IOException {
 
 
         int categoria_id = producto.getCategoria_id();
-        Optional<Categoria> optionalCategoria = categoriaService.getCategoriaById(categoria_id);
-        if (optionalCategoria.isEmpty()) return ResponseEntity.badRequest().body("La categoria " + categoria_id + "no fue encontrada");
-        Categoria categoria = optionalCategoria.get();
+        CategoriaDto optionalCategoria = categoriaService.findById(categoria_id); // fix
+        if (optionalCategoria == null) return ResponseEntity.badRequest().body("La categoria " + categoria_id + "no fue encontrada");
+        Categoria categoria = new Categoria(optionalCategoria.getId(),optionalCategoria.getNombre());
 
 
         Imagen imagen = imagenService

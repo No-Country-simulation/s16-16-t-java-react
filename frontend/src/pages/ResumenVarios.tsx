@@ -16,7 +16,13 @@ export default function ResumenVarios() {
   return (
     <div className='bg-gray-800'>
         <div className="w-[1280px] h-[973px] relative bg-gray-800">
-    <div className="w-[159px] h-[138px] left-[104px] top-[64px] absolute bg-zinc-300" />
+        <div className="w-[159px] h-[138px] left-[104px] top-[64px] absolute  " >
+        <img
+           className="w-[159px] h-[138px]   "
+           alt="Iconamoon arrow up"
+           src="/src/assets/img/logluz.png"
+         /> 
+        </div>
 
 
 

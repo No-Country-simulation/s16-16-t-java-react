@@ -16,8 +16,13 @@ export default function Payment() {
   return (
     <div className='bg-gray-800'>
     <div className="w-[1280px] h-[667px] relative bg-gray-800">
-    <div className="w-[159px] h-[138px] left-[104px] top-[64px] absolute bg-zinc-300" />
-
+    <div className="w-[159px] h-[138px] left-[104px] top-[64px] absolute bg-zinc-300 " >
+        <img
+           className="w-[159px] h-[138px]   "
+           alt="Iconamoon arrow up"
+           src="/src/assets/img/logluz.png"
+         /> 
+        </div>
 
 
     <div className="left-[470px] top-[64px] absolute justify-start items-center gap-6 inline-flex">

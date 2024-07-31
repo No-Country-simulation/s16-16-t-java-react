@@ -45,8 +45,13 @@ export default function Shipment() {
   return (
     <div className="bg-gray-800">
       <div className="w-[1280px] h-[1143px] relative bg-gray-800">
-        <div className="w-[159px] h-[138px] left-[104px] top-[64px] absolute bg-zinc-300" />
-        <div className="left-[285px] top-[242px] absolute justify-start items-center gap-16 inline-flex">
+      <div className="w-[159px] h-[138px] left-[104px] top-[64px] absolute bg-zinc-300 " >
+        <img
+           className="w-[159px] h-[138px]   "
+           alt="Iconamoon arrow up"
+           src="/src/assets/img/logluz.png"
+         /> 
+        </div>        <div className="left-[285px] top-[242px] absolute justify-start items-center gap-16 inline-flex">
           <div className="justify-start items-center gap-2 flex">
             <input
               type="radio"
