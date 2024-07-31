@@ -1,38 +1,21 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { RiArrowRightSLine } from "react-icons/ri";
 import CalculoPrices from "./CalculoPrices";
 // import categoriasJSON from '../zustand/categorias.json';
-import { propCategories } from "../zustand/interfaces";
+import useStore from "../zustand/store";
 
 type categoryProps = {
-  setNameCategory: (nameCategory: string) => void
   selectCategories: string[]
 }
 
-const FilterCategories: React.FC<categoryProps> = ({ setNameCategory, selectCategories }) => {
-  const [categories, setCategories] = useState<propCategories[]>([]);
+const FilterCategories: React.FC<categoryProps> = ({ selectCategories }) => {
+  const { categories, setSelectedCategory } = useStore();
   const [openCategories, setOpenCategories] = useState<boolean>(false);
 
-  useEffect(() => {
-    const getCategories = async () => {
-      try {
-        const response = await fetch('https://spring-postgres-ds9s.onrender.com/api/categoria');
-        if (!response.ok) {
-          throw new Error('Error al obtener las categorias');
-        }
-        const data: propCategories[] = await response.json();
-        setCategories(data);
-
-      } catch (e) {
-        console.error('Imposible solicitar categorias:', e);
-      }
-    }
-    getCategories();
-  },)
 
   const handleCategories = (categorie: string) => {
-    if (!(selectCategories.includes(categorie))) {
-      setNameCategory(categorie);
+    if (!selectCategories.includes(categorie)) {
+      setSelectedCategory(categorie);
     }
   }
 

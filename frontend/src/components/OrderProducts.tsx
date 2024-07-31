@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { RiArrowDownSLine, RiArrowRightSLine } from "react-icons/ri";
 
-const OrderProducts: React.FC = () => {
+type selectOrder = { orderProduct: (stringOrder: string) => void };
+
+const OrderProducts: React.FC<selectOrder> = ({ orderProduct }) => {
   const [openOrder, setOpenOrder] = useState(false);
 
   return (
@@ -20,8 +22,8 @@ const OrderProducts: React.FC = () => {
             ].map(([text]) => (
               <p
                 key={text}
+                onClick={() => orderProduct(text)}
                 className="pl-3 py-1 hover:border-l-[3px] hover:border-primary-normal hover:bg-primary-darker transition"
-               
               >
                 Precio más {text}
               </p>

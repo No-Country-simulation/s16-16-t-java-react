@@ -1,4 +1,3 @@
-import React from 'react';
 import image1 from '../assets/Rectangle415.png'
 import image2 from '../assets/Rectangle414.png'
 import { Link } from 'wouter';
