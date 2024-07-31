@@ -1,20 +1,15 @@
-import { useEffect, useRef, useState, MouseEvent, useCallback } from "react";
-import emptyCartIcon from "../assets/cart/carritoVacio.svg";
-import trashIcon from "../assets/cart/codicon_trash.svg";
-import envioIcon from "../assets/cart/Envío-correo.png";
-import checkIcon from "../assets/checkbox.svg";
-import checkActiveIcon from "../assets/checkboxActive.svg";
-import tiendaIcon from "../assets/cart/TiendaIcono.png";
-import carritoIcon from "../assets/icono-mi-carrito-white.svg";
+import React, { useEffect, useRef, useState, MouseEvent, useCallback } from "react"
+import emptyCartIcon from "../assets/cart/carritoVacio.svg"
+import trashIcon from "../assets/cart/codicon_trash.svg"
+import envioIcon from "../assets/cart/Envío-correo.png"
+import checkIcon from "../assets/checkbox.svg"
+import checkActiveIcon from "../assets/checkboxActive.svg"
+import tiendaIcon from "../assets/cart/TiendaIcono.png"
+import carritoIcon from "../assets/icono-mi-carrito-white.svg"
+import { Link } from "wouter"
 import imagenPrueba from '../assets/mate-angel.png';
-import { Link } from "wouter";
-import Counter from "./Counter";
-
-interface CartItem {
-  id: number;
-  nombre: string;
-  precio: number;
-}
+import Counter from "./Counter"
+import useStore from "../zustand/store"
 
 interface CartProps {
   open: boolean;
@@ -22,38 +17,31 @@ interface CartProps {
 }
 
 const Cart: React.FC<CartProps> = ({ open, onClose }) => {
-  const [amount, setAmount] = useState<number>(1);
+  const { cart, removeFromCart } = useStore()
   const [check, setCheck] = useState<boolean>(false);
   const [envio, setEnvio] = useState<boolean>(false);
   const [direccion, setDireccion] = useState<string>('');
   const [checkEnvio, setCheckEnvio] = useState<boolean>(true);
-  const [cart, setCart] = useState<CartItem[]>([]);
 
-  const totalPrice: number = cart.reduce((total, item) => total + item.precio * amount, 0);
+  const totalPrice: number = cart.reduce((total, item) => total + item.precio * item.quantity, 0)
   const cartRef = useRef<HTMLDivElement | null>(null);
 
-  // Memoriza handleClose con useCallback
   const handleClose = useCallback((e: MouseEvent) => {
     if (cartRef.current && !cartRef.current.contains(e.target as Node)) {
       onClose();
     }
   }, [onClose]);
 
-  const handleRemoveItem = (id: number) => {
-    setCart(cart.filter(item => item.id !== id));
-  };
-
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setDireccion(e.target.value);
   };
 
   useEffect(() => {
-    // Agrega y elimina el event listener para cerrar el carrito al hacer clic fuera de él
     if (open) {
-      document.addEventListener('mousedown', handleClose);
+      document.addEventListener('mousedown', handleClose as EventListener);
     }
     return () => {
-      document.removeEventListener('mousedown', handleClose);
+      document.removeEventListener('mousedown', handleClose as EventListener);
     };
   }, [open, handleClose]);
 
@@ -69,25 +57,36 @@ const Cart: React.FC<CartProps> = ({ open, onClose }) => {
         {cart.length ? (
           <div className="flex flex-col h-[calc(100vh-104px)]">
             <div className="overflow-y-auto no-scrollbar">
-              {cart.map((p, index) => (
+              {cart?.map((p, index) => (
                 <div className="flex flex-col" key={index}>
                   <div className="flex flex-col gap-4 p-4 pb-8">
                     <div className="flex gap-6 w-full items-center">
-                      <img className="py-[19px]" src={imagenPrueba} />
+                      <img className="py-[19px]" src={p.imageUrl} />
                       <div className="w-full flex flex-col gap-6">
                         <div className="flex justify-between gap-12">
                           <p className="font-semibold">{p.nombre}</p>
-                          <button onClick={() => handleRemoveItem(p.id)}><img src={trashIcon} /></button>
+                          <button onClick={() => removeFromCart(p.id)}><img src={trashIcon} /></button>
                         </div>
                         <div className="flex gap-12 justify-between items-center">
-                          <Counter counter={amount} setCounter={setAmount} />
+                          <Counter counter={p.quantity}
+                            setCounter={(newQuantity: number) => {
+                              if (newQuantity === 0) {
+                                removeFromCart(p.id);
+                              } else {
+                                useStore.setState((state) => ({
+                                  cart: state.cart.map((item) =>
+                                    item.id === p.id ? { ...item, quantity: newQuantity } : item
+                                  )
+                                }));
+                              }
+                            }} />
                           <p className="text-lg">${p.precio}</p>
                         </div>
                       </div>
                     </div>
                     <div className="flex justify-between">
                       <p className="text-lg font-semibold">Subtotal (sin envío)</p>
-                      <p className="text-lg font-semibold">${p.precio * amount}</p>
+                      <p className="text-lg font-semibold">$ {p.precio * p.quantity}</p>
                     </div>
                   </div>
                 </div>

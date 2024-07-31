@@ -7,11 +7,12 @@ import logo from '../assets/Asset 1 1.png';
 import { Link } from "wouter";
 import Cart from "./Cart";
 import { useState } from "react";
+import useStore from "../zustand/store";
 
 function Header() {
     const [open, setOpen] = useState(false)
     const toggleCart = () => setOpen(!open)
-
+    const { cart } = useStore()
     const handleCartClose = () =>{
         setOpen(false)
     }
@@ -40,7 +41,7 @@ function Header() {
                                 <img src={Carrito} className="h-12 object-cover"/>
                                 <p className="text-white text-sm font-normal leading-4 group-hover:text-primary-normal">Mi Carrito</p>
                                 <span className="absolute rounded-full w-5 h-5 grid place-items-center right-0 top-[-5px] bg-primary-light-active text-primary-dark font-bold text-sm">
-                                    0
+                                    {cart.length ? cart.length : 0}
                                 </span>
                             </button>
                         </section>
