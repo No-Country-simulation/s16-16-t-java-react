@@ -1,33 +1,23 @@
 import { useState } from 'react';
-import img1 from '../assets/mate-angel.png';
-import product from '../assets/product.png';
-import product2 from '../assets/mate-angel.png';
-import product3 from '../assets/mate-stich.png';
 import { MdOutlineKeyboardArrowRight, MdOutlineKeyboardArrowLeft } from "react-icons/md";
 import ProductCard from './ProductCard';
+import useStore from '../zustand/store';
 
 
 interface Card {
   image: string;
   title: string;
   price: string;
+  id: number;
 }
 
-const CarrouselCards: React.FC = () => {
+const CarrouselCards: React.FC = ({ cards }) => {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
-
-  const cards: Card[] = [
-    { image: img1, title: 'Card 1', price: '8.500' },
-    { image: product, title: 'Card 2', price: '8.500' },
-    { image: product2, title: 'Card 3', price: '8.500' },
-    { image: product3, title: 'Card 4', price: '8.500' },
-    { image: product, title: 'Card 5', price: '8.500' },
-  ];
-
+  
   const visibleCount = 4;
   const totalCards = cards.length;
   const maxIndex = totalCards - visibleCount;
-
+  const { addToCart } = useStore()
   const handleNext = () => {
     if (currentIndex < maxIndex) {
       setCurrentIndex((prevIndex) => prevIndex + 1);
@@ -49,7 +39,7 @@ const CarrouselCards: React.FC = () => {
         >
           {cards.map((card, i) => (
             <div key={i} className={`flex-none w-full sm:w-[280px]`}>
-                <ProductCard image={card.image} title={card.title} price={`$${card.price}`} />
+                <ProductCard id={card.id} addToCart={()=>addToCart(card)} image={card.imageUrl} title={card.nombre} price={`$${card.precio}`} />
             </div>
           ))}
         </div>

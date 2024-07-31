@@ -1,6 +1,5 @@
 import Footer from '../components/Footer'
 import Header from '../components/Header'
-import product from '../assets/product.png';
 import iconoInfo from '../assets/icono-info.png';
 import check from '../assets/icono-check.svg';
 import truck from '../assets/Group-truck.svg';
@@ -11,40 +10,37 @@ import CarrouselCards from '../components/CarrouselCards';
 import Especifications from '../components/Especifications';
 import useStore from '../zustand/store';
 import { useEffect, useState } from 'react';
-import { transformProduct } from '../helpers/transformProduct';
 
 function DetailProduct() {
 
-const { addToCart } = useStore()
+const { addToCart, products } = useStore()
 const [product, setProduct] = useState({})
+const [relatedProducts, setRelatedProducts] = useState([])
 const { id } = useParams()
-  
+
 useEffect(() => {
-  const fetchProduct = async () => {
-    try {
-      const response = await fetch(`https://spring-postgres-ds9s.onrender.com/productos/${id}`);
-      const data = await response.json();
-      if (response.ok) {
-        const transformedProduct = transformProduct(data);
-        setProduct(transformedProduct);
-      } else {
-        console.log('Error al cargar el producto');
-      }
-    } catch (err) {
-      console.log('Error al cargar el producto');
+  if (products && products.length > 0) {
+    const selectedProduct = products.find((p) => p.id === Number(id));
+    if (selectedProduct) {
+      setProduct(selectedProduct);
+      
+      const related = products.filter((p) => p.categoria.id === selectedProduct?.categoria.id && p.id !== Number(id));
+      setRelatedProducts(related)
+    } else {
+      console.error("Producto no encontrado:", id);
     }
-  };
-  fetchProduct()
-}, [id]);
+  }
+}, [id, products])
+
 
   return (
     <div className="font-openSans flex flex-col min-h-screen bg-background">
       <Header />
       <main className="flex-grow">
         <div className='mt-12 px-[110px] max-w-7xl m-auto text-start font-base font-bold flex gap-2 justify-start w-full'>
-          <Link to={'/'}>Productos / </Link>
-          <Link to={'/'}>Figuras de acción / </Link>
-          <Link to={'/'} className="text-primary-normal">{product.nombre}</Link>
+          <Link to={'/allProducts'}>Productos / </Link>
+          <Link to={'/allProducts'}>{product.categoria ? `${product.categoria.nombre} / ` : 'Sin categoría / '}</Link>
+          <span className="text-primary-normal">{product.nombre}</span>
         </div>
         <article className='mt-2 px-[110px] max-w-7xl m-auto text-start font-base font-bold flex gap-28 justify-start w-full'>
           <section className='flex flex-col'>
@@ -87,7 +83,7 @@ useEffect(() => {
           <div className='mb-32'>
             <h1 className="text-xl font-semibold leading-normal">Podría Interesarte</h1>
             <section className=''>
-              <CarrouselCards />
+              <CarrouselCards cards={relatedProducts} />
             </section>
           </div>
         </div>

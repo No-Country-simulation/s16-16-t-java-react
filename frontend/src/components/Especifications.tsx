@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import JhonDoe from '../assets/jhonDoe.png';
 
-function Especifications(name, descrption) {
+function Especifications({name, descrption}) {
   const [option, setOption] = useState<string>('');
   return (
     <>
@@ -18,8 +18,8 @@ function Especifications(name, descrption) {
         {option === 'Descripción'
           ? (
             <div className='mb-16'>
-              <p>Figura en 3D - BB-8 de Star Wars</p>
-              <p>Tambien conocido como “bebocho”  en latinoamerica es un androide que aparece en Tercera trilogía de Star Wars, iniciando en el Episodio VII - El despertar de la Fuerza junto a Poe Dameron. </p>
+              <p>Figura en 3D - {name}</p>
+              <p>{descrption}</p>
             </div>
           )
           : (option === 'Especificaciones'
