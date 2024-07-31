@@ -3,10 +3,12 @@ import { useEffect, useState } from 'react'
 import { PropProduct } from '../zustand/interfaces'
 import { transformProducts } from '../helpers/transformProducts'
 import { Link } from 'wouter'
+import useStore from '../zustand/store'
 
 
 const FeaturedProducts = () => {
   const [products, setProducts] = useState<PropProduct[]>([]);
+  const { addToCart } = useStore()
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -45,6 +47,8 @@ const FeaturedProducts = () => {
               image={product.imageUrl || ''}
               title={product.nombre}
               price={`$${product.precio}`}
+              addToCart={()=>addToCart(product)}
+              id={product.id}
             />
           ))}
       </div>

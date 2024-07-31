@@ -4,7 +4,10 @@ import InfoSection from '../components/InfoSection';
 import Ellipse1 from '../assets/Ellipse1.svg'
 import Ellipse2 from '../assets/Ellipse2.svg'
 import Ellipse3 from '../assets/Ellipse3.svg'
-import CarouselImg from '../assets/Carrousel.png'
+import CarrouselImg1 from '../assets/Carrousel1.png'
+import CarrouselImg2 from '../assets/Carrousel2.png'
+import CarrouselImg3 from '../assets/Carrousel3.png'
+import CarrouselImg4 from '../assets/Carrousel4.png'
 import GuidesSection from '../components/GuidesSection';
 import VitrinaSection from '../components/VitrinaSection';
 import JobsSection from '../components/JobsSection';
@@ -14,10 +17,10 @@ import Footer from '../components/Footer';
 
 const Home = () => {
   const slides = [
-    CarouselImg,
-    CarouselImg,
-    CarouselImg,
-    CarouselImg
+    CarrouselImg1,
+    CarrouselImg2,
+    CarrouselImg3,
+    CarrouselImg4
   ]
   return (
     <>
