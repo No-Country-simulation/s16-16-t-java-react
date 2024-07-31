@@ -61,7 +61,7 @@ const Cart: React.FC<CartProps> = ({ open, onClose }) => {
                 <div className="flex flex-col" key={index}>
                   <div className="flex flex-col gap-4 p-4 pb-8">
                     <div className="flex gap-6 w-full items-center">
-                      <img className="py-[19px]" src={p.imageUrl} />
+                      <img className="py-[19px] h-[93.6px] w-[120.83px] object-cover" src={p.imageUrl} />
                       <div className="w-full flex flex-col gap-6">
                         <div className="flex justify-between gap-12">
                           <p className="font-semibold">{p.nombre}</p>
