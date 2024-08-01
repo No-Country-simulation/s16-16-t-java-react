@@ -3,7 +3,7 @@ import SearchInput from "./SearchInput";
 import Navbar from "./Navbar";
 import Micuenta from '../assets/icono-mi-cuenta-skyblue.svg'
 import Carrito from '../assets/icono-mi-carrito-skyblue.svg'
-import logo from '../assets/Logo.svg';
+import logo from '../../public/Logo.svg';
 import { Link } from "wouter";
 import Cart from "./Cart";
 import { useState } from "react";
