@@ -1,5 +1,7 @@
-import React, { useState, ChangeEvent } from 'react';
+import { useState, ChangeEvent } from 'react';
 import Footer from '../components/Footer';
+import { Link } from 'wouter';
+import PriceCart from '../components/PriceCart';
 
 export default function Shipment() {
   const [personalData, setPersonalData] = useState({
@@ -37,21 +39,16 @@ export default function Shipment() {
     console.log('Volver');
   };
 
-  const handleContinue = () => {
-    // Lógica para el botón "Continuar"
-    console.log('Continuar');
-  };
-
   return (
-    <div className="bg-gray-800">
-      <div className="w-[1280px] h-[1143px] relative bg-gray-800">
-      <div className="w-[159px] h-[138px] left-[104px] top-[64px] absolute bg-zinc-300 " >
+    <div className="flex flex-col min-h-screen bg-background">
+      <div className="flex-grow m-auto w-[1280px] h-[1143px] relative">
+      <Link to="/" className="w-[159px] h-[138px] left-[104px] top-[64px] absolute bg-zinc-300 " >
         <img
            className="w-[159px] h-[138px]   "
            alt="Iconamoon arrow up"
            src="/src/assets/img/logluz.png"
          /> 
-        </div>        <div className="left-[285px] top-[242px] absolute justify-start items-center gap-16 inline-flex">
+        </Link>        <div className="left-[285px] top-[242px] absolute justify-start items-center gap-16 inline-flex">
           <div className="justify-start items-center gap-2 flex">
             <input
               type="radio"
@@ -109,17 +106,14 @@ export default function Shipment() {
             <div className="text-neutral-50 text-base font-semibold font-['Open Sans'] w-[176px]">VOLVER</div>
           </button>
 
-          <div className='w-[176px]  h-[29px] inline-flex gap-1'>
-            <span className="w-[176px]  h-[29px] text-white text-2xl font-semibold font-['Open Sans'] leading-[28.80px]">TOTAL:</span>
-            <span className="text-white text-2xl font-bold font-['Open Sans'] leading-[28.80px]"> $26.000</span>
-          </div>
+          <PriceCart />
 
-          <button
-            onClick={handleContinue}
+          <Link
+            to='/payment'
             className="w-44 h-[50px] px-[18px] py-[13px] bg-sky-500 rounded-lg justify-center items-center gap-2.5 flex hover:bg-cyan-600"
           >
             <div className="text-neutral-50 text-base font-semibold font-['Open Sans'] w-[176px] ">CONTINUAR</div>
-          </button>
+          </Link>
         </div>
 
         <div className="w-[706px] h-[645px] left-[287px] top-[296px] absolute">

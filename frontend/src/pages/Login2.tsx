@@ -1,6 +1,7 @@
 
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Footer from '../components/Footer';
+import { Link } from 'wouter';
 
 export default function Login2() {
   const [showPassword, setShowPassword] = useState(false);
@@ -18,22 +19,17 @@ export default function Login2() {
     setRememberMe(!rememberMe);
   };
 
-  const handleContinueAsGuest = () => {
-    // se agrega funcionalidad  al hacer clic al button.
-    alert('Continuar como invitado');
-  };
-
   return (
-    <div className=" bg-gray-800 ">
+    <div className="flex flex-col min-h-screen bg-background">
         {/* resto 1175-441=734 */}
-      <div className="w-[1280px] h-[734px] relative bg-gray-800  ">  
-        <div className="w-[159px] h-[138px] left-[104px] top-[64px] absolute bg-zinc-300 " >
+      <div className="flex-grow w-[1280px] h-[734px] relative m-auto">  
+        <Link to='/' className="w-[159px] h-[138px] left-[104px] top-[64px] absolute bg-zinc-300 " >
         <img
            className="w-[159px] h-[138px]   "
            alt="Iconamoon arrow up"
            src="/src/assets/img/logluz.png"
          /> 
-        </div>
+        </Link>
         <div className="h-[428px] left-[287px] top-[242px] absolute flex-col justify-start items-start gap-8 inline-flex">
           <div className="self-stretch text-white text-2xl font-semibold font-['Open Sans'] leading-[28.80px] -ml-[172px]">
             Iniciar sesión
@@ -166,14 +162,14 @@ export default function Login2() {
           Si deseas, al finalizar la compra, puedes registrarte y guardar tu información para futuras compras.
           <br />
         </div>
-        <button
-          onClick={handleContinueAsGuest}
+        <Link
+          to='/shipment'
           className="w-[341px] h-[50px] px-[18px] py-[13px] hover:bg-cyan-600 bg-sky-500 rounded-lg justify-center items-center gap-2.5 inline-flex"
         >
           <div className="text-neutral-50 text-base font-semibold font-['Open Sans']">
             CONTINUAR COMO INVITADO
           </div>
-        </button>
+        </Link>
       </div>
     </div>
     </div>

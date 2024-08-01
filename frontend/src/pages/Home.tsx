@@ -26,7 +26,9 @@ const Home = () => {
     <>
       <Header />
       <div className='font-openSans bg-background w-full flex flex-col items-center'>
-        <Carousel slides={slides} />
+        <div className='bg-black w-full'>
+          <Carousel slides={slides} />
+        </div>
         <section className='max-w-7xl flex items-center  gap-8 mt-16'>
           <CategoryCard image={Ellipse1} title='Productos 3D' text='Descubre una variedad de productos únicos y personalizados hechos con tecnología de impresión 3D' />
           <CategoryCard image={Ellipse2} title='Insumos y Materiales' text='Ofrecemos una variedad de filamentos y resinas de la más alta calidad para asegurar resultados excepcionales en tus impresiones' />

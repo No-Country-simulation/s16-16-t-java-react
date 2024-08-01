@@ -11,7 +11,6 @@ import Login from './pages/Login';
 import Login2 from './pages/Login2';
 import Shipment from './pages/Shipment';
 import Payment from './pages/Payment';
-import Resumen from './pages/Resumen';
 import ResumenVarios from './pages/ResumenVarios';
 import DetailProduct from './pages/DetailProduct';
 import ScrollToTop from './components/ScrollToTop';
@@ -80,7 +79,6 @@ const App = () => {
         <Route path="/calculator" component={Newcalculator} />
         <Route path='/shipment' component={Shipment}/>
         <Route path='/payment' component={Payment}/>
-        <Route path='/resumen' component={Resumen}/>
         <Route path='/resumenvarios' component={ResumenVarios}/>
         <Route path="/Logincheck" component={Login2} />
         <Route path="/Login" component={Login} />

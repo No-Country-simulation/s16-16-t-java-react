@@ -7,7 +7,6 @@ import checkActiveIcon from "../assets/checkboxActive.svg"
 import tiendaIcon from "../assets/cart/TiendaIcono.png"
 import carritoIcon from "../assets/icono-mi-carrito-white.svg"
 import { Link } from "wouter"
-import imagenPrueba from '../assets/mate-angel.png';
 import Counter from "./Counter"
 import useStore from "../zustand/store"
 
@@ -159,7 +158,7 @@ const Cart: React.FC<CartProps> = ({ open, onClose }) => {
                 <p className="text-2xl font-bold">${totalPrice}</p>
               </div>
               <div className="flex flex-col gap-4 justify-center items-center w-fit">
-                <button className="flex gap-2 py-2 px-1 w-full justify-center bg-primary-normal rounded h-[50px] items-center"><img src={carritoIcon} /><p className="text-lg font-semibold">PAGAR</p></button>
+                <Link to="/Logincheck" className="flex gap-2 py-2 px-1 w-full justify-center bg-primary-normal rounded h-[50px] items-center"><img src={carritoIcon} /><p className="text-lg font-semibold">PAGAR</p></Link>
                 <Link to="/AllProducts" className="text-lg font-semibold">Seguir Comprando</Link>
               </div>
             </div>
