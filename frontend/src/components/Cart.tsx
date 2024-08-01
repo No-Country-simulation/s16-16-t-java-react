@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState, MouseEvent, useCallback } from "react"
+import React, { useEffect, useRef, useState, useCallback } from "react"
 import emptyCartIcon from "../assets/cart/carritoVacio.svg"
 import trashIcon from "../assets/cart/codicon_trash.svg"
 import envioIcon from "../assets/cart/Envío-correo.png"
@@ -25,8 +25,9 @@ const Cart: React.FC<CartProps> = ({ open, onClose }) => {
   const totalPrice: number = cart.reduce((total, item) => total + item.precio * item.quantity, 0)
   const cartRef = useRef<HTMLDivElement | null>(null);
 
-  const handleClose = useCallback((e: MouseEvent) => {
-    if (cartRef.current && !cartRef.current.contains(e.target as Node)) {
+  const handleClose: EventListener = useCallback((e: any) => {
+    const mouseEvent = e;
+    if (cartRef.current && !cartRef.current.contains(mouseEvent.target as Node)) {
       onClose();
     }
   }, [onClose]);
@@ -37,10 +38,10 @@ const Cart: React.FC<CartProps> = ({ open, onClose }) => {
 
   useEffect(() => {
     if (open) {
-      document.addEventListener('mousedown', handleClose as EventListener);
+      document.addEventListener('mousedown', handleClose);
     }
     return () => {
-      document.removeEventListener('mousedown', handleClose as EventListener);
+      document.removeEventListener('mousedown', handleClose);
     };
   }, [open, handleClose]);
 

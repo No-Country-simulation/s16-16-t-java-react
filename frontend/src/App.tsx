@@ -14,7 +14,6 @@ import Payment from './pages/Payment';
 import ResumenVarios from './pages/ResumenVarios';
 import DetailProduct from './pages/DetailProduct';
 import ScrollToTop from './components/ScrollToTop';
-import ResultImg from "./components/ResultImg";
 import { useEffect } from "react";
 import useStore from "./zustand/store";
 import { transformProducts } from "./helpers/transformProducts";
@@ -83,7 +82,6 @@ const App = () => {
         <Route path="/Logincheck" component={Login2} />
         <Route path="/Login" component={Login} />
         <Route path="/ayuda" component={Help} />
-        <Route path="/test" component={ResultImg} />
         <Route><Error404 /></Route>
       </Switch>
     </>

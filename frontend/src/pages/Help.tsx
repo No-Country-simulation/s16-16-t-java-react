@@ -1,4 +1,3 @@
-import React from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import robotImg from '../assets/material-symbols_robot-2-outline.svg'

@@ -1,4 +1,3 @@
-import React from 'react';
 import IMG from '../assets/Ilustracion-404.svg'
 import Header from '../components/Header';
 import Footer from '../components/Footer';

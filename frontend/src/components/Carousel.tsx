@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import { FunctionComponent } from 'react';
 import { useState } from 'react'
 import ButtonNext from '../assets/boton-carrousel-siguiente.svg'
 import ButtonPrevoius from '../assets/boton-carrousel-anterior.svg'
