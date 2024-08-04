@@ -1,12 +1,9 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { IoIosSearch } from "react-icons/io";
 import { IoClose } from "react-icons/io5";
-import { transformProducts } from "../helpers/transformProducts";
-import { PropProduct } from "../zustand/interfaces";
 
 function SearchInput() {
   const [cleanInput, setCleanInput] = useState<boolean>(false);
-  const [products, setProducts] = useState<PropProduct[]>([]);
   const [search, setSearch] = useState<string>('');
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -19,24 +16,6 @@ function SearchInput() {
     setCleanInput(false);
   }
   
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const response = await fetch('https://spring-postgres-ds9s.onrender.com/productos');
-        if (!response.ok) {
-          throw new Error('Error al obtener los productos');
-        }
-        const data: PropProduct[] = await response.json();
-
-        // obtener los productos pero con la imagen transformada
-        setProducts(transformProducts(data));
-      } catch (e) {
-        console.error('Error al obtener los productos:', e);
-      }
-      fetchProducts();
-  }}, [])
-
-
   return (
     <>
       <div className="rounded-lg border-2 border-cyan-600 w-[720px] h-12 flex items-center bg-neutral-normal-hover">

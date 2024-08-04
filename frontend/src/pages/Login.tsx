@@ -1,6 +1,6 @@
 
 
-import React, { useState } from "react"
+import { useState } from "react"
 import Footer from "../components/Footer"
 import Header from "../components/Header"
 import closedEyeIcon from "../assets/eyeClosedIcon.svg"
@@ -12,7 +12,6 @@ const Login = () => {
   const [toggle, setToggle] = useState(true)
   const [check, setCheck] = useState(false)
 
-  const handleSubmit = () => {}
   return (
     <div className="flex flex-col min-h-screen bg-background">
       <Header />

@@ -20,6 +20,8 @@ interface StoreState {
   addToCart: (product: PropProduct) => void;
   removeFromCart: (id: number) => void;
   clearCart: () => void;
+  priceCart: number;
+  setPriceCart: (newPriceCart: number) => void;
 }
 
 const useStore = create<StoreState>((set) => ({  
@@ -77,6 +79,9 @@ const useStore = create<StoreState>((set) => ({
       cart: state.cart.filter((item) => item.id !== id),
     })),
   clearCart: () => set({ cart: [] }),
+  priceCart: 0,
+  setPriceCart: (newMinPrice) => set({ minPrice: newMinPrice }),
+
 }));
 
 export default useStore;

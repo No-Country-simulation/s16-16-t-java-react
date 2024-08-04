@@ -1,4 +1,3 @@
-import React from 'react';
 import logo1 from '../assets/aesub_logo.png.png'
 import logo2 from '../assets/artillery3dcn_logo.png.png'
 import logo3 from '../assets/bond_technologies_logo.png.png'

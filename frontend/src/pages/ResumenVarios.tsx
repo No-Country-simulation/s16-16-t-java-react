@@ -1,5 +1,5 @@
-import React from 'react'
 import Footer from '../components/Footer'
+import { Link } from 'wouter';
 
 export default function ResumenVarios() {
 
@@ -9,13 +9,9 @@ export default function ResumenVarios() {
         console.log('Volver');
       };
     
-      const handleContinue = () => {
-        // Lógica para el botón "Continuar"
-        console.log('Continuar');
-      };
   return (
-    <div className='bg-gray-800'>
-        <div className="w-[1280px] h-[973px] relative bg-gray-800">
+    <div className="flex flex-col min-h-screen bg-background">
+        <div className="m-auto flex-grow w-[1280px] h-[973px] relative">
         <div className="w-[159px] h-[138px] left-[104px] top-[64px] absolute  " >
         <img
            className="w-[159px] h-[138px]   "
@@ -68,12 +64,12 @@ export default function ResumenVarios() {
             <span className="text-white text-2xl font-bold font-['Open Sans'] leading-[28.80px] "> $26.000</span>
           </div>
 
-          <button
-            onClick={handleContinue}
+          <Link
+            to='/'
             className="w-44 h-[50px] px-[18px] py-[13px] bg-sky-500 rounded-lg justify-center items-center gap-2.5 flex hover:bg-cyan-600"
           >
-            <div className="text-neutral-50 text-base font-semibold font-['Open Sans'] w-[176px] ">CONTINUAR</div>
-          </button>
+            <div className="text-neutral-50 text-base font-semibold font-['Open Sans'] w-[176px] ">Volver al Inicio</div>
+          </Link>
 
           
     </div>

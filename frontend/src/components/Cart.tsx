@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState, MouseEvent, useCallback } from "react"
+import React, { useEffect, useRef, useState, useCallback } from "react"
 import emptyCartIcon from "../assets/cart/carritoVacio.svg"
 import trashIcon from "../assets/cart/codicon_trash.svg"
 import envioIcon from "../assets/cart/Envío-correo.png"
@@ -7,7 +7,6 @@ import checkActiveIcon from "../assets/checkboxActive.svg"
 import tiendaIcon from "../assets/cart/TiendaIcono.png"
 import carritoIcon from "../assets/icono-mi-carrito-white.svg"
 import { Link } from "wouter"
-import imagenPrueba from '../assets/mate-angel.png';
 import Counter from "./Counter"
 import useStore from "../zustand/store"
 
@@ -26,8 +25,9 @@ const Cart: React.FC<CartProps> = ({ open, onClose }) => {
   const totalPrice: number = cart.reduce((total, item) => total + item.precio * item.quantity, 0)
   const cartRef = useRef<HTMLDivElement | null>(null);
 
-  const handleClose = useCallback((e: MouseEvent) => {
-    if (cartRef.current && !cartRef.current.contains(e.target as Node)) {
+  const handleClose: EventListener = useCallback((e: any) => {
+    const mouseEvent = e;
+    if (cartRef.current && !cartRef.current.contains(mouseEvent.target as Node)) {
       onClose();
     }
   }, [onClose]);
@@ -38,10 +38,10 @@ const Cart: React.FC<CartProps> = ({ open, onClose }) => {
 
   useEffect(() => {
     if (open) {
-      document.addEventListener('mousedown', handleClose as EventListener);
+      document.addEventListener('mousedown', handleClose);
     }
     return () => {
-      document.removeEventListener('mousedown', handleClose as EventListener);
+      document.removeEventListener('mousedown', handleClose);
     };
   }, [open, handleClose]);
 
@@ -159,7 +159,7 @@ const Cart: React.FC<CartProps> = ({ open, onClose }) => {
                 <p className="text-2xl font-bold">${totalPrice}</p>
               </div>
               <div className="flex flex-col gap-4 justify-center items-center w-fit">
-                <button className="flex gap-2 py-2 px-1 w-full justify-center bg-primary-normal rounded h-[50px] items-center"><img src={carritoIcon} /><p className="text-lg font-semibold">PAGAR</p></button>
+                <Link to="/Logincheck" className="flex gap-2 py-2 px-1 w-full justify-center bg-primary-normal rounded h-[50px] items-center"><img src={carritoIcon} /><p className="text-lg font-semibold">PAGAR</p></Link>
                 <Link to="/AllProducts" className="text-lg font-semibold">Seguir Comprando</Link>
               </div>
             </div>
