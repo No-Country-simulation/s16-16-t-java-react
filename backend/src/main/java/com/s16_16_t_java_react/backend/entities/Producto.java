@@ -24,10 +24,9 @@ public class Producto {
     private String descripcion;
     private Double precio;
     private int stock;
-    private int categoria_id;
     
     @ManyToOne
-    @JoinColumn(name = "categoria_id", insertable=false, updatable=false)
+    @JoinColumn(name = "categoria_id")
     private Categoria categoria;
     @OneToMany
     private Set<Imagen> imagenes;
