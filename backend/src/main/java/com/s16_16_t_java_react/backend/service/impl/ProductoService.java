@@ -9,7 +9,7 @@ import com.s16_16_t_java_react.backend.repository.ProductoRepository;
 import com.s16_16_t_java_react.backend.service.CategoriaService;
 import com.s16_16_t_java_react.backend.service.IImagenService;
 import com.s16_16_t_java_react.backend.service.IProductoService;
-import org.springframework.http.ResponseEntity;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -18,18 +18,13 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+@AllArgsConstructor
 @Service
 public class ProductoService implements IProductoService {
 
     private ProductoRepository repository;
     private IImagenService imagenService;
     private CategoriaService categoriaService;
-
-    public ProductoService(ProductoRepository repository, IImagenService imagenService, CategoriaService categoriaService) {
-        this.repository = repository;
-        this.imagenService = imagenService;
-        this.categoriaService = categoriaService;
-    }
 
     @Override
     public List<Producto> getAll() {
